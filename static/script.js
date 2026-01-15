@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!e.target.closest('a') && !e.target.closest('button')) {
                 isFlipped = !isFlipped;
                 card.classList.toggle('is-flipped', isFlipped);
+                // Immediately set the correct transform so card appears without mouse movement
+                card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg) rotateX(0deg)';
 
                 if (typeof gtag === 'function') {
                     gtag('event', 'card_flip', {
@@ -35,12 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-        // Also flip on mouse down (press & hold) for better UX
+        // Also flip on mouse down (press & hold) for better UX - but only if on front
         card.addEventListener('mousedown', (e) => {
-            if (!e.target.closest('a') && !e.target.closest('button')) {
+            if (!e.target.closest('a') && !e.target.closest('button') && !isFlipped) {
                 isFlipped = true;
                 mouseDownFlip = true; // Set flag because flip originated from mousedown
                 card.classList.add('is-flipped');
+                // Immediately set transform so card appears without mouse movement
+                card.style.transform = 'rotateY(180deg)';
                 if (typeof gtag === 'function') {
                     gtag('event', 'card_flip', {
                         'event_category': 'Interaction',
@@ -70,15 +74,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Parallax Tilt (Desktop) - Optimized
-    if (container && card) {
-        container.addEventListener('mousemove', (e) => {
-            // if (!isDesktop) return; // Allow on all screen sizes for responsive testing
+    // Parallax Tilt - Smooth Lerped Animation (Desktop only)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (container && card && !isTouchDevice) {
+        // Desktop: enable smooth lerped tilt animation
+        let targetRotateX = 0;
+        let targetRotateY = 0;
+        let currentRotateX = 0;
+        let currentRotateY = 0;
+        const lerpFactor = 0.08;
+        const maxTilt = 15;
+
+        function animate() {
+            currentRotateX += (targetRotateX - currentRotateX) * lerpFactor;
+            currentRotateY += (targetRotateY - currentRotateY) * lerpFactor;
 
             if (isFlipped) {
                 card.style.transform = `rotateY(180deg)`;
-                return;
+            } else {
+                card.style.transform = `rotateY(${currentRotateY}deg) rotateX(${currentRotateX}deg)`;
             }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        container.addEventListener('mousemove', (e) => {
+            if (isFlipped) return;
 
             const rect = container.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -86,17 +110,33 @@ document.addEventListener('DOMContentLoaded', () => {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            const rotateX = ((y - centerY) / centerY) * -25;
-            const rotateY = ((x - centerX) / centerX) * 25;
-
-            requestAnimationFrame(() => {
-                card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-            });
+            targetRotateX = ((y - centerY) / centerY) * -maxTilt;
+            targetRotateY = ((x - centerX) / centerX) * maxTilt;
         });
 
         container.addEventListener('mouseleave', () => {
-            let baseRotateY = isFlipped ? 180 : 0;
-            card.style.transform = `rotateY(${baseRotateY}deg) rotateX(0deg)`;
+            targetRotateX = 0;
+            targetRotateY = 0;
+        });
+    } else if (card && isTouchDevice) {
+        // Mobile: simple tap-to-flip without tilt animation
+        // Just ensure the transform is set correctly when flipped
+        card.addEventListener('touchend', (e) => {
+            // Prevent ghost clicks
+            e.preventDefault();
+
+            if (!e.target.closest('a') && !e.target.closest('button')) {
+                isFlipped = !isFlipped;
+                card.classList.toggle('is-flipped', isFlipped);
+                card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+
+                if (typeof gtag === 'function') {
+                    gtag('event', 'card_flip', {
+                        'event_category': 'Interaction',
+                        'event_label': isFlipped ? 'Back' : 'Front'
+                    });
+                }
+            }
         });
     }
 

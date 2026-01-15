@@ -233,7 +233,7 @@ h1 {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* No transition here - JS handles smooth lerped animation */
   border-radius: var(--radius-md);
   cursor: grab;
 }
@@ -937,24 +937,31 @@ h1 {
   }
 }
 
-@media (min-width: 768px) {
-  .project-modal-body {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-  }
+/* Hero image layout - image on top, text below */
+.project-modal-body {
+  display: flex;
+  flex-direction: column;
 }
 
 .project-media {
-  background: #f0f0f0;
+  background: #1a1a1a;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 32px;
+  max-height: 60vh;
+  /* Limit height so text is visible without scrolling */
+  overflow: hidden;
 }
 
 .project-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 55vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .project-info {
@@ -1230,5 +1237,10 @@ h1 {
 
   .card-name {
     font-size: 1.5rem;
+  }
+
+  /* On mobile, use CSS transition for flip since JS lerp is disabled */
+  .business-card {
+    transition: transform 0.5s ease;
   }
 }
