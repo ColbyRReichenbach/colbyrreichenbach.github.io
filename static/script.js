@@ -7,62 +7,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const flipBackBtn = document.getElementById('flipBackBtn');
 
     let isFlipped = false;
-    let isDesktop = window.innerWidth >= 768;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    // Optimize Resize: Update variable instead of querying DOM in loop
-    // window.addEventListener('resize', () => {
-    //    isDesktop = window.innerWidth >= 768; // Removed restriction
-    // });
+    // Helper function to flip the card
+    function flipCard() {
+        isFlipped = !isFlipped;
+        card.classList.toggle('is-flipped', isFlipped);
+        card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
 
-    // Flip Logic
+        if (typeof gtag === 'function') {
+            gtag('event', 'card_flip', {
+                'event_category': 'Interaction',
+                'event_label': isFlipped ? 'Back' : 'Front'
+            });
+        }
+    }
+
     if (card) {
-        // Click to flip – but ignore if we already flipped via mousedown
-        card.addEventListener('click', (e) => {
-            if (mouseDownFlip) {
-                // Reset flag; keep the current flipped state
-                mouseDownFlip = false;
-                return;
-            }
-            if (!e.target.closest('a') && !e.target.closest('button')) {
-                isFlipped = !isFlipped;
-                card.classList.toggle('is-flipped', isFlipped);
-                // Immediately set the correct transform so card appears without mouse movement
-                card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg) rotateX(0deg)';
+        if (isTouchDevice) {
+            // MOBILE: Use touchstart to flip, mark that we handled it
+            let touchHandled = false;
 
-                if (typeof gtag === 'function') {
-                    gtag('event', 'card_flip', {
-                        'event_category': 'Interaction',
-                        'event_label': isFlipped ? 'Back' : 'Front'
-                    });
+            card.addEventListener('touchstart', (e) => {
+                if (!e.target.closest('a') && !e.target.closest('button')) {
+                    touchHandled = true;
                 }
-            }
-        });
-        // Also flip on mouse down (press & hold) for better UX - but only if on front
-        card.addEventListener('mousedown', (e) => {
-            if (!e.target.closest('a') && !e.target.closest('button') && !isFlipped) {
-                isFlipped = true;
-                mouseDownFlip = true; // Set flag because flip originated from mousedown
-                card.classList.add('is-flipped');
-                // Immediately set transform so card appears without mouse movement
-                card.style.transform = 'rotateY(180deg)';
-                if (typeof gtag === 'function') {
-                    gtag('event', 'card_flip', {
-                        'event_category': 'Interaction',
-                        'event_label': 'Back'
-                    });
-                }
-            }
-        });
-        // Prevent mouseup from unintentionally resetting flip
-        card.addEventListener('mouseup', (e) => {
-            // Do nothing – keep current flip state until another click toggles it
-        });
+            }, { passive: true });
 
+            card.addEventListener('touchend', (e) => {
+                if (touchHandled && !e.target.closest('a') && !e.target.closest('button')) {
+                    e.preventDefault(); // Prevent ghost click
+                    flipCard();
+                }
+                touchHandled = false;
+            });
+
+            // Ignore click events on touch devices (they're ghost clicks)
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('a') && !e.target.closest('button')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+        } else {
+            // DESKTOP: Simple click to flip
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('a') && !e.target.closest('button')) {
+                    flipCard();
+                }
+            });
+        }
+
+        // Stop propagation on interactive elements
         const interactiveElements = card.querySelectorAll('a, button');
         interactiveElements.forEach(el => {
-            el.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
+            el.addEventListener('click', (e) => e.stopPropagation());
+            el.addEventListener('touchend', (e) => e.stopPropagation());
         });
     }
 
@@ -71,12 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             isFlipped = false;
             card.classList.remove('is-flipped');
+            card.style.transform = 'rotateY(0deg)';
         });
     }
 
     // Parallax Tilt - Smooth Lerped Animation (Desktop only)
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
     if (container && card && !isTouchDevice) {
         // Desktop: enable smooth lerped tilt animation
         let targetRotateX = 0;
@@ -119,25 +118,73 @@ document.addEventListener('DOMContentLoaded', () => {
             targetRotateY = 0;
         });
     } else if (card && isTouchDevice) {
-        // Mobile: simple tap-to-flip without tilt animation
-        // Just ensure the transform is set correctly when flipped
-        card.addEventListener('touchend', (e) => {
-            // Prevent ghost clicks
-            e.preventDefault();
+        // MOBILE: Gyroscope-based 3D tilt using DeviceOrientation
+        let gyroEnabled = false;
+        let targetRotateX = 0;
+        let targetRotateY = 0;
+        let currentRotateX = 0;
+        let currentRotateY = 0;
+        const lerpFactor = 0.1;
+        const maxTilt = 12; // Slightly less intense on mobile
 
-            if (!e.target.closest('a') && !e.target.closest('button')) {
-                isFlipped = !isFlipped;
-                card.classList.toggle('is-flipped', isFlipped);
-                card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        function animateMobile() {
+            currentRotateX += (targetRotateX - currentRotateX) * lerpFactor;
+            currentRotateY += (targetRotateY - currentRotateY) * lerpFactor;
 
-                if (typeof gtag === 'function') {
-                    gtag('event', 'card_flip', {
-                        'event_category': 'Interaction',
-                        'event_label': isFlipped ? 'Back' : 'Front'
-                    });
-                }
+            if (isFlipped) {
+                card.style.transform = `rotateY(180deg)`;
+            } else {
+                card.style.transform = `rotateY(${currentRotateY}deg) rotateX(${currentRotateX}deg)`;
             }
-        });
+
+            requestAnimationFrame(animateMobile);
+        }
+
+        function handleOrientation(event) {
+            if (isFlipped) return;
+
+            // beta: front-to-back tilt (-180 to 180), gamma: left-to-right tilt (-90 to 90)
+            let beta = event.beta || 0;   // X-axis rotation
+            let gamma = event.gamma || 0; // Y-axis rotation
+
+            // Normalize beta (usually phone is held at ~45-60 degrees, not flat)
+            // Subtract 45 to center around typical holding angle
+            beta = Math.max(-45, Math.min(45, beta - 45));
+            gamma = Math.max(-45, Math.min(45, gamma));
+
+            // Map to tilt range
+            targetRotateX = (beta / 45) * -maxTilt;
+            targetRotateY = (gamma / 45) * maxTilt;
+        }
+
+        // Check if DeviceOrientationEvent is supported
+        if (window.DeviceOrientationEvent) {
+            // iOS 13+ requires permission
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                // Add a one-time tap prompt to enable gyro
+                let permissionAsked = false;
+
+                card.addEventListener('touchstart', function enableGyro() {
+                    if (permissionAsked) return;
+                    permissionAsked = true;
+
+                    DeviceOrientationEvent.requestPermission()
+                        .then(response => {
+                            if (response === 'granted') {
+                                window.addEventListener('deviceorientation', handleOrientation);
+                                gyroEnabled = true;
+                                animateMobile();
+                            }
+                        })
+                        .catch(console.error);
+                }, { once: true });
+            } else {
+                // Non-iOS or older iOS - just add the listener
+                window.addEventListener('deviceorientation', handleOrientation);
+                gyroEnabled = true;
+                animateMobile();
+            }
+        }
     }
 
 
