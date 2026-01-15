@@ -440,6 +440,8 @@ h1 {
   transform: rotateY(180deg);
   z-index: 2;
   /* sit above front when flipped */
+  opacity: 0;
+  /* hidden by default */
 }
 
 .business-card.is-flipped .card-front {
@@ -453,6 +455,8 @@ h1 {
 
 .business-card.is-flipped .card-back {
   pointer-events: auto;
+  opacity: 1;
+  /* make back visible when flipped */
 }
 
 .contact-item {
