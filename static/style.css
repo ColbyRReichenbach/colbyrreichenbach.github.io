@@ -246,7 +246,7 @@ h1 {
 .card-face {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-md);
+  border-radius: 20px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   box-shadow: var(--shadow-card);
@@ -254,9 +254,10 @@ h1 {
   background: var(--color-surface-solid);
   display: flex;
   flex-direction: column;
-  /* Force hardware acceleration to fix mobile ghosting */
-  /* transform: translate3d(0, 0, 0);  <-- REMOVE THIS, it breaks 3D stacking context on some iOS versions */
   z-index: 1;
+  /* Safari iOS fix: properly clip rounded corners with 3D transforms */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
 }
 
 /* Specific fix for backface visibility on iOS */
@@ -267,8 +268,11 @@ h1 {
 /* Front Face Styles */
 .card-front {
   background: var(--color-surface-solid);
-  border-radius: var(--radius-md);
+  border-radius: 20px;
   overflow: hidden;
+  /* Safari iOS fix: use mask to properly clip rounded corners with 3D transforms */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
 }
 
 /* Molten Liquid Background */
