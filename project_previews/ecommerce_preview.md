@@ -1,17 +1,17 @@
-This project delivers an internal analytics dashboard for an e-commerce business, leveraging Python and Streamlit to transform 2.5 years of sales, customer, and product data into actionable intelligence. The system provides stakeholders with real-time, intuitive visualizations of key performance indicators (KPIs) and trends. It enables dynamic exploration of business performance through filters for date ranges and customer geography, directly supporting data-driven decision-making for marketing, sales, and inventory management.
+# Ecommerce Analytics Dashboard
 
-### Key Highlights:
+## Project Overview
+An internal analytics dashboard built for a standardized e-commerce dataset (Olist). This tool transforms 2.5 years of raw sales, customer, and product data into real-time, actionable business intelligence.
 
-* **Comprehensive KPI Tracking:** Visualizes critical e-commerce metrics such as monthly revenue, average order value (AOV), customer acquisition trends, and product category performance.
-* **Interactive Data Exploration:** Features a user-friendly Streamlit interface with dynamic filters, allowing users to drill down into specific time periods and geographic regions for granular insights.
-* **Actionable Business Intelligence:** Designed to help identify growth opportunities, understand customer preferences, pinpoint operational bottlenecks (e.g., in shipping), and optimize marketing spend.
-* **Centralized Performance Monitoring:** Provides a single source of truth for various departments to monitor overall e-commerce health and make informed strategic adjustments.
+## Key Highlights
+*   **Comprehensive KPI Tracking:** tailored metrics for **Monthly Revenue**, **Average Order Value (AOV)**, and **Customer Acquisition Cost**.
+*   **Interactive Filtering:** Users can drill down by specific time periods (YoY, MoM) and geographic regions (State/City) to identify local market trends.
+*   **Operational Insights:** Visualizes shipping delays and product category performance to help operations teams optimize inventory and logistics.
+*   **Live Deployment:** Fully deployed on **Streamlit Cloud**, demonstrating the ability to ship production-grade data apps.
 
-### Core Technologies & Concepts:
-
-* Python, Streamlit, Pandas, Plotly
-* SQL, PostgreSQL (Neon DB)
-* Dashboard Design & Development
-* Business Intelligence (BI)
-* E-commerce KPIs & Data Analysis
-* Data Visualization
+## Tech Stack
+*   **Streamlit**: Interactive web application framework.
+*   **Python**: Backend logic.
+*   **Pandas**: Time-series analysis and data aggregation.
+*   **Plotly / Altair**: Interactive charting.
+*   **Postgres (Neon)**: Database for raw data storage.

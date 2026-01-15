@@ -1,167 +1,325 @@
-console.log("JavaScript is running!");
 
-// --- MODAL LOGIC ---
+document.addEventListener('DOMContentLoaded', () => {
 
-/**
- * Opens a modal, sends a GA event, and fetches its dynamic content.
- * @param {string} modalId The ID of the modal to open.
- */
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
+    // --- 3D CARD PHYSICS ---
+    const card = document.querySelector('.business-card');
+    const container = document.querySelector('.hero-section');
+    const flipBackBtn = document.getElementById('flipBackBtn');
 
-    if (!modal) {
-        console.error(`Modal with ID "${modalId}" not found.`);
-        return;
-    }
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    let isFlipped = false;
+    let isDesktop = window.innerWidth >= 768;
 
-    // --- GA4 Custom Event for Modal View ---
-    const projectTitleElement = modal.querySelector('.modal-right h3');
-    const projectTitle = projectTitleElement ? projectTitleElement.textContent.trim() : modalId;
-    
-    if (typeof gtag === 'function') { // Check if Google Analytics function is available
-        gtag('event', 'view_project_modal', {
-          'event_category': 'Portfolio Interaction',
-          'event_label': projectTitle, // e.g., "Ad Performance Analysis and AB - Testing"
-          'project_id': modalId      // e.g., "modal_ad"
+    // Optimize Resize: Update variable instead of querying DOM in loop
+    window.addEventListener('resize', () => {
+        isDesktop = window.innerWidth >= 768;
+    });
+
+    // Flip Logic
+    if (card) {
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('a') && !e.target.closest('button')) {
+                isFlipped = !isFlipped;
+                card.classList.toggle('is-flipped', isFlipped);
+
+                if (typeof gtag === 'function') {
+                    gtag('event', 'card_flip', {
+                        'event_category': 'Interaction',
+                        'event_label': isFlipped ? 'Back' : 'Front'
+                    });
+                }
+            }
+        });
+
+        const interactiveElements = card.querySelectorAll('a, button');
+        interactiveElements.forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
         });
     }
-    // --- End GA4 Custom Event ---
 
-    const markdownSource = modal.getAttribute('data-markdown-source');
-    const container = modal.querySelector('.project-details-container');
+    if (flipBackBtn) {
+        flipBackBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isFlipped = false;
+            card.classList.remove('is-flipped');
+        });
+    }
 
-    if (markdownSource && container && (!container.dataset.loaded || container.innerHTML.includes('Loading'))) {
-        fetch(markdownSource)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Network response was not ok: ${response.statusText}`);
-                }
-                return response.text();
-            })
-            .then(text => {
-                if (typeof marked !== 'undefined' && typeof marked.parse === 'function') { // Check if marked.js is loaded
-                    const htmlContent = marked.parse(text);
-                    container.innerHTML = htmlContent;
-                    container.dataset.loaded = 'true'; 
-                } else {
-                    console.error('marked.js library is not loaded or marked.parse is not a function.');
-                    container.innerHTML = '<p>Error: Markdown parser not available or not working.</p>';
-                }
-            })
-            .catch(error => {
-                container.innerHTML = `<p><strong>Error:</strong> Could not load project details. Please try again later.</p>`;
-                console.error('Error fetching or parsing markdown:', error);
+    // Parallax Tilt (Desktop) - Optimized
+    if (container && card) {
+        container.addEventListener('mousemove', (e) => {
+            if (!isDesktop) return; // Use cached boolean
+
+            if (isFlipped) {
+                card.style.transform = `rotateY(180deg)`;
+                return;
+            }
+
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -25;
+            const rotateY = ((x - centerX) / centerX) * 25;
+
+            requestAnimationFrame(() => {
+                card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
             });
-    } else if (markdownSource && !container) {
-        console.error("'.project-details-container' not found inside modal:", modalId);
-    }
-}
+        });
 
-/**
- * Closes a modal.
- * @param {string} modalId The ID of the modal to close.
- */
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = 'auto'; // Restore background scroll
+        container.addEventListener('mouseleave', () => {
+            let baseRotateY = isFlipped ? 180 : 0;
+            card.style.transform = `rotateY(${baseRotateY}deg) rotateX(0deg)`;
+        });
     }
-}
 
-// Close modal if background is clicked
-window.onclick = function(event) {
-    if (event.target.classList.contains('modal')) {
-        if (event.target.id) {
-            closeModal(event.target.id);
+
+    // --- SCROLL ANIMATIONS ---
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+
+    // --- MODAL LOGIC (Event Delegation) ---
+    let projectStartTime = 0;
+
+    // Event Delegation: Listen for clicks on the bento-grid
+    const bentoGrid = document.querySelector('.bento-grid');
+    if (bentoGrid) {
+        bentoGrid.addEventListener('click', (e) => {
+            const card = e.target.closest('.bento-card');
+            if (card) {
+                const modalId = card.getAttribute('data-modal-target');
+                if (modalId) {
+                    openModal(modalId);
+                }
+            }
+        });
+    }
+
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+
+        projectStartTime = Date.now();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        const markdownSrc = modal.getAttribute('data-markdown-source');
+        const contentContainer = modal.querySelector('.markdown-content');
+
+        if (markdownSrc && contentContainer) {
+            if (!contentContainer.dataset.loaded) {
+                contentContainer.innerHTML = `
+                    <div class="skeleton-loader">
+                        <div class="skeleton-text title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                    </div>`;
+
+                fetch(markdownSrc)
+                    .then(res => res.text())
+                    .then(text => {
+                        if (typeof marked !== 'undefined') {
+                            contentContainer.innerHTML = marked.parse(text);
+                        } else {
+                            contentContainer.innerHTML = text;
+                        }
+                        contentContainer.dataset.loaded = "true";
+                    })
+                    .catch(err => {
+                        console.error("Failed to load markdown", err);
+                        contentContainer.innerHTML = "<p>Could not load project details.</p>";
+                    });
+            }
+        }
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'view_project', {
+                'event_category': 'Portfolio',
+                'event_label': modalId
+            });
+        }
+    };
+
+    // Close logic
+    document.querySelectorAll('.close-project').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const modal = e.target.closest('.project-modal');
+            closeModal(modal);
+        });
+    });
+
+    // Close on background click
+    window.onclick = function (event) {
+        if (event.target.classList.contains('project-modal')) {
+            closeModal(event.target);
+        }
+        if (event.target === document.getElementById('contact-modal')) {
+            document.getElementById('contact-modal').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable scroll
+        }
+    };
+
+    function closeModal(modal) {
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+            // GA4 Dwell Time Logic
+            if (projectStartTime > 0 && typeof gtag === 'function') {
+                const duration = Math.round((Date.now() - projectStartTime) / 1000);
+                const projectTitle = modal.querySelector('h3') ? modal.querySelector('h3').textContent : 'Unknown';
+
+                // Only track meaningful reads (> 2 seconds)
+                if (duration > 2) {
+                    gtag('event', 'project_read_time', {
+                        'event_category': 'Engagement',
+                        'event_label': projectTitle,
+                        'value': duration, // seconds
+                        'project_name': projectTitle
+                    });
+                }
+                projectStartTime = 0; // Reset
+            }
         }
     }
-}
 
-// --- ON PAGE LOAD ---
-document.addEventListener('DOMContentLoaded', function() {
 
-    // --- HEADER NAVIGATION TOGGLE ---
-    const menuToggle = document.querySelector('.menu-toggle');
-    const siteNav = document.querySelector('.site-nav');
-    const navLinks = document.querySelectorAll('.site-nav a');
+    // --- FAB & CONTACT FORM ---
+    const fab = document.getElementById('fab-contact');
+    const contactModal = document.getElementById('contact-modal');
+    const closeFormBtn = document.querySelector('.close-form-btn');
 
-    if (menuToggle && siteNav) {
-        menuToggle.addEventListener('click', () => {
-            const isOpen = siteNav.classList.toggle('is-open');
-            menuToggle.classList.toggle('is-active', isOpen);
-            menuToggle.setAttribute('aria-expanded', String(isOpen));
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (siteNav.classList.contains('is-open')) {
-                    siteNav.classList.remove('is-open');
-                    menuToggle.classList.remove('is-active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
+    if (fab && contactModal) {
+        fab.addEventListener('click', () => {
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+            if (typeof gtag === 'function') {
+                gtag('event', 'open_contact_form', { 'event_category': 'Conversion' });
+            }
         });
     }
 
-    // --- FOOTER YEAR ---
-    const footerYear = document.getElementById('footer-year');
-    if (footerYear) {
-        footerYear.textContent = new Date().getFullYear();
+    if (closeFormBtn) {
+        closeFormBtn.addEventListener('click', () => {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable scroll
+        });
     }
 
-    // --- GIF HOVER FUNCTIONALITY ---
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        const img = card.querySelector('img');
-        const staticSrc = img ? img.getAttribute('data-static-src') : null;
-        const gifSrc = img ? img.getAttribute('data-gif-src') : null;
+    // --- ADVANCED ANALYTICS (GA4) ---
 
-        if (img && staticSrc && gifSrc && staticSrc !== gifSrc) { // Only add if sources are defined and different
-            card.addEventListener('mouseenter', () => {
-                img.src = gifSrc;
-            });
-            card.addEventListener('mouseleave', () => {
-                img.src = staticSrc;
+    // 1. Resume Download Tracking
+    const resumeBtn = document.getElementById('resume-btn');
+    if (resumeBtn) {
+        resumeBtn.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'resume_download', {
+                    'event_category': 'Conversion',
+                    'file_name': 'ColbyReichenbach_Resume'
+                });
+            }
+        });
+    }
+
+    // 2. Universal Outbound Link Tracking (GitHub, Streamlit, Tableau, external)
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.hostname !== window.location.hostname && typeof gtag === 'function') {
+            // Check if it's inside a project modal
+            const modal = link.closest('.project-modal');
+            const projectName = modal ? (modal.querySelector('h3')?.textContent || 'Unknown Project') : 'General';
+
+            gtag('event', 'click', {
+                'event_category': 'Outbound Link',
+                'event_label': link.href,
+                'link_url': link.href,
+                'link_domain': link.hostname,
+                'context': projectName
             });
         }
     });
 
-    // --- GA4 Custom Event Tracking for Outbound Links in Modals ---
-    const outboundLinks = document.querySelectorAll('.modal .btn-project');
-    outboundLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            // Find the parent modal and its title
-            const modal = event.target.closest('.modal');
-            const projectTitleElement = modal ? modal.querySelector('.modal-right h3') : null;
-            const projectTitle = projectTitleElement ? projectTitleElement.textContent.trim() : 'Unknown Project';
-            
-            const linkUrl = event.target.href;
-            let linkType = 'Unknown Link'; // Default link type
-            
-            // Determine a more descriptive link type from the button's text content
-            const buttonText = event.target.textContent.toLowerCase();
-            if (buttonText.includes('github')) {
-                linkType = 'GitHub';
-            } else if (buttonText.includes('live app')) {
-                linkType = 'Live App';
-            } else if (buttonText.includes('report')) {
-                linkType = 'Report';
-            } else if (buttonText.includes('tableau')) {
-                linkType = 'Tableau';
-            }
+    // 3. Track Social Contact Clicks (Business Card)
+    const contactLinks = document.querySelectorAll('.contact-item');
+    contactLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                let platform = 'Unknown';
+                if (link.querySelector('.fa-linkedin')) platform = 'LinkedIn';
+                else if (link.querySelector('.fa-github')) platform = 'GitHub';
+                else if (link.querySelector('.fa-envelope')) platform = 'Email';
 
-            if (typeof gtag === 'function') { // Check if Google Analytics function is available
-                gtag('event', 'click_outbound_link', {
-                    'event_category': 'Portfolio Outbound',
-                    'event_label': `${projectTitle} - ${linkType}`,
-                    'link_url': linkUrl,
-                    'project_title': projectTitle
+                gtag('event', 'social_contact_click', {
+                    'event_category': 'Engagement',
+                    'event_label': platform,
+                    'platform': platform
                 });
             }
         });
     });
+
+    // 4. Enhanced Time Tracking (Handle Tab Close/Switch)
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === 'hidden') {
+            // If a modal is currently open, track time now
+            const activeModal = document.querySelector('.project-modal.active');
+            if (activeModal && projectStartTime > 0) {
+                const duration = Math.round((Date.now() - projectStartTime) / 1000);
+                const projectTitle = activeModal.querySelector('h3')?.textContent || 'Unknown';
+
+                if (duration > 2 && typeof gtag === 'function') {
+                    gtag('event', 'project_read_time', {
+                        'event_category': 'Engagement',
+                        'event_label': projectTitle,
+                        'value': duration,
+                        'project_name': projectTitle,
+                        'trigger': 'tab_hidden'
+                    });
+                }
+                // Reset time so we don't double count if they come back
+                projectStartTime = Date.now();
+            }
+        }
+    });
+
+    // 5. Scroll Depth Tracking
+    let scrollDepths = { 25: false, 50: false, 75: false, 100: false };
+    window.addEventListener('scroll', () => {
+        if (typeof gtag !== 'function') return;
+
+        const winHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.scrollY;
+        const scrollPercent = Math.round(((scrollTop + winHeight) / docHeight) * 100);
+
+        [25, 50, 75, 100].forEach(threshold => {
+            if (scrollPercent >= threshold && !scrollDepths[threshold]) {
+                scrollDepths[threshold] = true;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'Engagement',
+                    'value': threshold,
+                    'percent_scrolled': threshold + '%'
+                });
+            }
+        });
+    }, { passive: true });
+
 });
