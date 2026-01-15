@@ -16,7 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Flip Logic
     if (card) {
+        // Click to flip – but ignore if we already flipped via mousedown
         card.addEventListener('click', (e) => {
+            if (mouseDownFlip) {
+                // Reset flag; keep the current flipped state
+                mouseDownFlip = false;
+                return;
+            }
             if (!e.target.closest('a') && !e.target.closest('button')) {
                 isFlipped = !isFlipped;
                 card.classList.toggle('is-flipped', isFlipped);
@@ -28,6 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             }
+        });
+        // Also flip on mouse down (press & hold) for better UX
+        card.addEventListener('mousedown', (e) => {
+            if (!e.target.closest('a') && !e.target.closest('button')) {
+                isFlipped = true;
+                mouseDownFlip = true; // Set flag because flip originated from mousedown
+                card.classList.add('is-flipped');
+                if (typeof gtag === 'function') {
+                    gtag('event', 'card_flip', {
+                        'event_category': 'Interaction',
+                        'event_label': 'Back'
+                    });
+                }
+            }
+        });
+        // Prevent mouseup from unintentionally resetting flip
+        card.addEventListener('mouseup', (e) => {
+            // Do nothing – keep current flip state until another click toggles it
         });
 
         const interactiveElements = card.querySelectorAll('a, button');
