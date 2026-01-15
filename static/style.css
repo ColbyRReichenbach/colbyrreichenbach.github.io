@@ -433,6 +433,11 @@ h1 {
 
 .business-card.is-flipped .card-front {
   pointer-events: none;
+  opacity: 0;
+  /* Hide front content completely when flipped */
+  transition: opacity 0.2s step-end;
+  /* Instant hide after half flip? No, keep it simple */
+  transition: opacity 0.3s ease;
 }
 
 .business-card.is-flipped .card-back {
@@ -885,6 +890,32 @@ h1 {
   transform: translateY(40px);
 }
 
+@media (max-width: 768px) {
+  .project-modal-content {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    /* Simplify animation on mobile */
+    animation: none;
+  }
+
+  .project-modal {
+    padding: 0;
+    overflow-y: scroll;
+    /* Force native scroll behavior */
+  }
+
+  .project-info {
+    padding: 24px;
+    /* More reasonable padding for mobile */
+    padding-bottom: 80px;
+    /* Space for close button */
+  }
+}
+
 @keyframes slideUpModal {
   to {
     transform: translateY(0);
@@ -1176,8 +1207,10 @@ h1 {
   }
 
   .card-logo-img {
-    height: 36px;
-    /* Smaller logo on mobile */
+    height: 48px !important;
+    /* Force smaller size on mobile */
+    max-width: 48px;
+    object-fit: contain;
   }
 
   .card-name {
