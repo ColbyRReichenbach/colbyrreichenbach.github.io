@@ -106,6 +106,20 @@ button {
   color: var(--color-text-primary);
 }
 
+.logo-title,
+.logo-divider {
+  display: inline;
+}
+
+@media (max-width: 600px) {
+
+  .logo-title,
+  .logo-divider {
+    display: none;
+    /* Hide subtitle on mobile to save space */
+  }
+}
+
 .nav-links {
   display: flex;
   gap: 24px;
@@ -241,8 +255,13 @@ h1 {
   display: flex;
   flex-direction: column;
   /* Force hardware acceleration to fix mobile ghosting */
-  transform: translate3d(0, 0, 0);
+  /* transform: translate3d(0, 0, 0);  <-- REMOVE THIS, it breaks 3D stacking context on some iOS versions */
   z-index: 1;
+}
+
+/* Specific fix for backface visibility on iOS */
+.card-back {
+  transform: rotateY(180deg);
 }
 
 /* Front Face Styles */
@@ -1133,12 +1152,35 @@ h1 {
   .nav-links {
     display: flex;
     /* Show them! */
-    gap: 16px;
-    font-size: 0.9rem;
+    gap: 12px;
+    /* Tighter gap */
+    font-size: 0.85rem;
+    /* Smaller font */
+  }
+
+  .nav-btn {
+    padding: 6px 12px;
+    /* Smaller button */
+    font-size: 0.8rem;
   }
 
   .nav-container {
     flex-direction: column;
     gap: 16px;
+  }
+
+  /* Scale card down for small mobile screens to prevent overflow */
+  .card-scene {
+    width: 280px;
+    height: 420px;
+  }
+
+  .card-logo-img {
+    height: 36px;
+    /* Smaller logo on mobile */
+  }
+
+  .card-name {
+    font-size: 1.5rem;
   }
 }
