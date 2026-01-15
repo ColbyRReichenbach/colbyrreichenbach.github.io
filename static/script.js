@@ -119,13 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else if (card && isTouchDevice) {
         // MOBILE: Gyroscope-based 3D tilt using DeviceOrientation
-        let gyroEnabled = false;
         let targetRotateX = 0;
         let targetRotateY = 0;
         let currentRotateX = 0;
         let currentRotateY = 0;
         const lerpFactor = 0.1;
-        const maxTilt = 12; // Slightly less intense on mobile
+        const maxTilt = 12;
 
         function animateMobile() {
             currentRotateX += (targetRotateX - currentRotateX) * lerpFactor;
@@ -140,50 +139,55 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animateMobile);
         }
 
+        // Start animation loop (needed for flip to work even without gyro)
+        animateMobile();
+
         function handleOrientation(event) {
             if (isFlipped) return;
 
-            // beta: front-to-back tilt (-180 to 180), gamma: left-to-right tilt (-90 to 90)
-            let beta = event.beta || 0;   // X-axis rotation
-            let gamma = event.gamma || 0; // Y-axis rotation
+            let beta = event.beta || 0;
+            let gamma = event.gamma || 0;
 
-            // Normalize beta (usually phone is held at ~45-60 degrees, not flat)
-            // Subtract 45 to center around typical holding angle
+            // Normalize for typical phone holding angle
             beta = Math.max(-45, Math.min(45, beta - 45));
             gamma = Math.max(-45, Math.min(45, gamma));
 
-            // Map to tilt range
             targetRotateX = (beta / 45) * -maxTilt;
             targetRotateY = (gamma / 45) * maxTilt;
         }
 
-        // Check if DeviceOrientationEvent is supported
-        if (window.DeviceOrientationEvent) {
-            // iOS 13+ requires permission
+        // Check if site is served over HTTPS (required for gyroscope on iOS)
+        const isSecure = location.protocol === 'https:' || location.hostname === 'localhost';
+
+        if (window.DeviceOrientationEvent && isSecure) {
+            // iOS 13+ requires explicit permission
             if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                // Add a one-time tap prompt to enable gyro
-                let permissionAsked = false;
-
-                card.addEventListener('touchstart', function enableGyro() {
-                    if (permissionAsked) return;
-                    permissionAsked = true;
-
+                // Request permission on first touch
+                const requestGyroPermission = () => {
                     DeviceOrientationEvent.requestPermission()
                         .then(response => {
                             if (response === 'granted') {
                                 window.addEventListener('deviceorientation', handleOrientation);
-                                gyroEnabled = true;
-                                animateMobile();
+                                console.log('Gyroscope enabled');
+                            } else {
+                                console.log('Gyroscope permission denied');
                             }
                         })
-                        .catch(console.error);
-                }, { once: true });
+                        .catch(err => {
+                            console.error('Gyroscope permission error:', err);
+                        });
+                };
+
+                // Trigger on first tap of the card
+                card.addEventListener('touchstart', requestGyroPermission, { once: true });
+
             } else {
-                // Non-iOS or older iOS - just add the listener
+                // Android or older iOS - no permission needed
                 window.addEventListener('deviceorientation', handleOrientation);
-                gyroEnabled = true;
-                animateMobile();
+                console.log('Gyroscope enabled (no permission needed)');
             }
+        } else if (!isSecure) {
+            console.log('Gyroscope requires HTTPS. Testing on localhost or non-secure origin.');
         }
     }
 

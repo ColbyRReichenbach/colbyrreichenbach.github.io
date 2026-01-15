@@ -739,6 +739,8 @@ h1 {
 ----------------------------------------------------------------------------- */
 .site-footer {
   padding: 60px 24px;
+  padding-bottom: 100px;
+  /* Extra space for fixed FAB button */
   background: var(--color-surface-solid);
   border-top: 1px solid var(--color-border);
 }
@@ -1194,7 +1196,18 @@ h1 {
   }
 
   .stats-list {
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
   }
 
   .hero-text-content {
