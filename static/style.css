@@ -219,7 +219,7 @@ h1 {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: var(--radius-md);
   cursor: grab;
 }
@@ -240,6 +240,9 @@ h1 {
   background: var(--color-surface-solid);
   display: flex;
   flex-direction: column;
+  /* Force hardware acceleration to fix mobile ghosting */
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
 }
 
 /* Front Face Styles */
@@ -294,11 +297,11 @@ h1 {
   margin-bottom: auto;
 }
 
-.card-logo {
-  font-weight: 800;
-  font-size: 1.2rem;
-  letter-spacing: -0.05em;
-  color: var(--color-text-primary);
+.card-logo-img {
+  height: 48px;
+  /* Adjust as needed */
+  width: auto;
+  object-fit: contain;
 }
 
 .card-tag {
@@ -830,6 +833,9 @@ h1 {
   /* Full screen distinct feel */
   display: none;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Momentum scroll on iOS */
+  scroll-behavior: smooth;
 }
 
 .project-modal.active {
@@ -888,9 +894,7 @@ h1 {
 
 .project-info {
   padding: 48px;
-  /* More breathing room */
-  max-height: 80vh;
-  overflow-y: auto;
+  /* Remove nested scroll so whole modal scrolls */
   color: var(--color-text-primary);
 }
 
@@ -1100,6 +1104,22 @@ h1 {
     text-align: center;
   }
 
+  /* Center the education block on mobile */
+  .education-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .education-block i {
+    margin-bottom: 8px;
+    /* Stack icon above text on mobile */
+  }
+
+  .stats-list {
+    justify-content: center;
+  }
+
   .hero-text-content {
     margin: 0 auto;
     order: 2;
@@ -1111,7 +1131,14 @@ h1 {
   }
 
   .nav-links {
-    display: none;
-    /* Simplification: Hide nav on mobile for this iteration or add burger menu */
+    display: flex;
+    /* Show them! */
+    gap: 16px;
+    font-size: 0.9rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 16px;
   }
 }

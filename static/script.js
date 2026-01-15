@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDesktop = window.innerWidth >= 768;
 
     // Optimize Resize: Update variable instead of querying DOM in loop
-    window.addEventListener('resize', () => {
-        isDesktop = window.innerWidth >= 768;
-    });
+    // window.addEventListener('resize', () => {
+    //    isDesktop = window.innerWidth >= 768; // Removed restriction
+    // });
 
     // Flip Logic
     if (card) {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Parallax Tilt (Desktop) - Optimized
     if (container && card) {
         container.addEventListener('mousemove', (e) => {
-            if (!isDesktop) return; // Use cached boolean
+            // if (!isDesktop) return; // Allow on all screen sizes for responsive testing
 
             if (isFlipped) {
                 card.style.transform = `rotateY(180deg)`;
