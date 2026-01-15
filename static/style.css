@@ -267,6 +267,8 @@ h1 {
 /* Front Face Styles */
 .card-front {
   background: var(--color-surface-solid);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 /* Molten Liquid Background */
@@ -1273,7 +1275,10 @@ h1 {
   }
 
   /* Ensure rounded corners on card faces */
-  .card-face {
-    border-radius: 16px;
+  .card-face,
+  .card-front,
+  .card-back {
+    border-radius: 16px !important;
+    overflow: hidden !important;
   }
 }
