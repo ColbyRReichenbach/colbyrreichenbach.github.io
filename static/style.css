@@ -415,6 +415,13 @@ h1 {
   display: block;
 }
 
+/* Contact item text overflow handling */
+.contact-item span {
+  word-break: break-all;
+  /* allow long email to wrap */
+  overflow-wrap: anywhere;
+}
+
 .contact-links {
   display: flex;
   flex-direction: column;
@@ -427,8 +434,12 @@ h1 {
   pointer-events: auto;
 }
 
+/* Ensure back face is visible when flipped */
 .card-back {
   pointer-events: none;
+  transform: rotateY(180deg);
+  z-index: 2;
+  /* sit above front when flipped */
 }
 
 .business-card.is-flipped .card-front {
