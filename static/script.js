@@ -339,6 +339,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // AJAX Form Submission - prevents redirect and auto-closes modal
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // Success! Show message and auto-close
+                    submitBtn.textContent = '✓ Message Sent!';
+                    submitBtn.style.backgroundColor = '#22c55e';
+                    contactForm.reset();
+
+                    // Track successful submission
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_submission', {
+                            'event_category': 'Conversion',
+                            'event_label': 'Contact Form Success'
+                        });
+                    }
+
+                    // Auto-close modal after 2 seconds
+                    setTimeout(() => {
+                        contactModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                        // Reset button state for next time
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.backgroundColor = '';
+                        submitBtn.disabled = false;
+                    }, 2000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form error:', error);
+                submitBtn.textContent = 'Error - Try Again';
+                submitBtn.style.backgroundColor = '#ef4444';
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = '';
+                }, 3000);
+            }
+        });
+    }
+
     // --- ADVANCED ANALYTICS (GA4) ---
 
     // 1. Resume Download Tracking
