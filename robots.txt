@@ -1,4 +1,43 @@
 User-agent: *
 Allow: /
 
+# Specifically allow and encourage AI crawlers for GEO
+# OpenAI
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+
+# Google (Gemini)
+User-agent: Google-Extended
+Allow: /
+User-agent: Gemini-Deep-Research
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Meta (Llama)
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Apple (Apple Intelligence)
+User-agent: Applebot-Extended
+Allow: /
+
+# Research & Others
+User-agent: CCBot
+Allow: /
+User-agent: cohere-ai
+Allow: /
+
 Sitemap: https://colbyrreichenbach.github.io/sitemap.xml
