@@ -81,7 +81,6 @@
               "Reinforcement Learning",
               "Thompson Sampling",
               "A/B Testing",
-<<<<<<< HEAD
               "Predictive Analytics",
               "Data Visualization",
               "Streamlit",
@@ -89,43 +88,22 @@
               "Docker",
               "Real Estate Analytics",
               "Marketing Intelligence",
-              "Customer Retention"
-=======
+              "Customer Retention",
               "Experiment Design",
               "Data Storytelling",
               "ETL Automation",
               "Visualization",
               "GenAI / LLM Integration",
               "Cross-Functional Communication"
-            ],
-            "knowsAbout": [
-              "Marketing intelligence",
-              "Customer retention analytics",
-              "Interactive storytelling",
-              "Data visualization",
-              "Machine learning",
-              "Generative Engine Optimization (GEO)",
-              "SEO Best Practices",
-              "Predictive Modeling",
-              "Ecommerce Analytics",
-              "Marketing Experimentation"
->>>>>>> main
             ]
           },
           {
             "@type": "WebSite",
             "@id": "https://colbyrreichenbach.github.io/#website",
             "url": "https://colbyrreichenbach.github.io/",
-<<<<<<< HEAD
             "name": "Colby Reichenbach | AI Engineer & Data Scientist",
             "description": "Portfolio showcasing AI engineering, MLOps pipelines, predictive analytics, and intelligent data products.",
-            "creator": { "@id": "https://colbyrreichenbach.github.io/#person" }
-=======
-            "name": "Colby Reichenbach Portfolio",
-            "description": "Entry-level data analyst portfolio featuring marketing, ecommerce, retention, and sports analytics projects.",
-            "creator": {
-              "@id": "https://colbyrreichenbach.github.io/#person"
-            },
+            "creator": { "@id": "https://colbyrreichenbach.github.io/#person" },
             "inLanguage": "en",
             "mainEntity": {
               "@id": "https://colbyrreichenbach.github.io/#person"
@@ -138,7 +116,6 @@
             "hasPart": {
               "@id": "https://colbyrreichenbach.github.io/#projects"
             }
->>>>>>> main
           },
           {
             "@type": "CreativeWork",
@@ -329,6 +306,20 @@
 
       <div class="bento-grid">
 
+        <!-- FEATURED: Pulse (Span 2 / Hero) -->
+        <article class="bento-card span-2 scroll-reveal" data-modal-target="modal_pulse">
+          <div class="card-image-wrapper">
+            <div class="featured-badge"><i class="fa-solid fa-star"></i> Featured</div>
+            <img src="static/images/pulse_preview.png" alt="Pulse - Hybrid Athlete Dashboard">
+            <div class="card-overlay">
+              <h3>Pulse Tracker</h3>
+              <p>AI-powered training dashboard for hybrid athletes. Integrates strength, cardio, and biometrics with
+                GPT-4o-mini coaching.</p>
+              <span class="btn-text">View Project <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </article>
+
         <!-- FEATURED 1: S.P.E.C Valuation Engine (Span 2 / Hero) -->
         <article class="bento-card span-2 scroll-reveal" data-modal-target="modal_spec">
           <div class="card-image-wrapper">
@@ -517,6 +508,26 @@
   </div>
 
   <!-- Project Modals (Preserved Logic) -->
+  <!-- Pulse Modal -->
+  <div id="modal_pulse" class="project-modal" data-markdown-source="project_previews/pulse_preview.md">
+    <div class="project-modal-content">
+      <span class="close-project">&times;</span>
+      <div class="project-modal-body">
+        <div class="project-media">
+          <img src="static/images/pulse_preview.png" alt="Pulse Dashboard">
+        </div>
+        <div class="project-info">
+          <h3>Pulse Tracker</h3>
+          <div class="markdown-content">Loading details...</div>
+          <div class="project-links">
+            <a href="https://github.com/ColbyRReichenbach/workout-web" target="_blank" class="btn-link">GitHub Repo</a>
+            <a href="https://pulse-workout.vercel.app/" target="_blank" class="btn-link">Live App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Ad Performance Modal -->
   <div id="modal_ad" class="project-modal" data-markdown-source="project_previews/ad_performance_preview.md">
     <div class="project-modal-content">
@@ -583,126 +594,112 @@
     </div>
   </div>
 
-  <<<<<<< HEAD <!-- MLB Modal -->
-    <div id="modal_mlb_dash" class="project-modal" data-markdown-source="project_previews/mlb_dash_preview.md">
-      <div class="project-modal-content">
-        <span class="close-project">&times;</span>
-        <div class="project-modal-body">
-          <div class="project-media">
-            <img src="static/images/mlb_dash.jpg" alt="MLB Dashboard">
-          </div>
-          <div class="project-info">
-            <h3>MLB Award Winner Visuals</h3>
-            <div class="markdown-content">Loading details...</div>
-            <div class="project-links">
-              <a href="https://public.tableau.com/app/profile/colby.reichenbach/viz/MLBAwardWinners2000-2023v1/OverviewDash"
-                target="_blank" class="btn-link">Tableau Public</a>
-            </div>
-            =======
-            <div class="project-card" onclick="openModal('modal_mlb_dash')">
-              <img src="static/images/mlb_dash.jpg"
-                alt="MLB Award Winner Visualization Preview - Interactive Tableau story showing two decades of award voting trends"
-                data-static-src="static/images/mlb_dash.png">
-              <div class="project-card-content">
-                <h3>MLB Award Winner Visualization</h3>
-                <p class="project-description">Interactive Tableau story reimagining two decades of award voting trends.
-                </p>
-                >>>>>>> main
-              </div>
-            </div>
+  <!-- MLB Modal -->
+  <div id="modal_mlb_dash" class="project-modal" data-markdown-source="project_previews/mlb_dash_preview.md">
+    <div class="project-modal-content">
+      <span class="close-project">&times;</span>
+      <div class="project-modal-body">
+        <div class="project-media">
+          <img src="static/images/mlb_dash.jpg" alt="MLB Dashboard">
+        </div>
+        <div class="project-info">
+          <h3>MLB Award Winner Visuals</h3>
+          <div class="markdown-content">Loading details...</div>
+          <div class="project-links">
+            <a href="https://public.tableau.com/app/profile/colby.reichenbach/viz/MLBAwardWinners2000-2023v1/OverviewDash"
+              target="_blank" class="btn-link">Tableau Public</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- S.P.E.C Valuation Modal -->
-        <div id="modal_spec" class="project-modal" data-markdown-source="project_previews/spec_preview.md">
-          <div class="project-modal-content">
-            <span class="close-project">&times;</span>
-            <div class="project-modal-body">
-              <div class="project-media">
-                <img src="static/images/spec_valuation.png" alt="SPEC Valuation Engine">
-              </div>
-              <div class="project-info">
-                <h3>S.P.E.C. Valuation Engine</h3>
-                <div class="markdown-content">Loading details...</div>
-                <div class="project-links">
-                  <a href="https://github.com/ColbyRReichenbach/S.P.E.C-Valuation" target="_blank"
-                    class="btn-link">GitHub
-                    Repo</a>
-                </div>
-              </div>
-            </div>
+  <!-- S.P.E.C Valuation Modal -->
+  <div id="modal_spec" class="project-modal" data-markdown-source="project_previews/spec_preview.md">
+    <div class="project-modal-content">
+      <span class="close-project">&times;</span>
+      <div class="project-modal-body">
+        <div class="project-media">
+          <img src="static/images/spec_valuation.png" alt="SPEC Valuation Engine">
+        </div>
+        <div class="project-info">
+          <h3>S.P.E.C. Valuation Engine</h3>
+          <div class="markdown-content">Loading details...</div>
+          <div class="project-links">
+            <a href="https://github.com/ColbyRReichenbach/S.P.E.C-Valuation" target="_blank" class="btn-link">GitHub
+              Repo</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Bandit Modal -->
-        <div id="modal_bandit" class="project-modal"
-          data-markdown-source="project_previews/marketing_bandit_preview.md">
-          <div class="project-modal-content">
-            <span class="close-project">&times;</span>
-            <div class="project-modal-body">
-              <div class="project-media">
-                <img src="static/images/marketing_bandit.png" alt="Marketing Bandit">
-              </div>
-              <div class="project-info">
-                <h3>Marketing Bandit</h3>
-                <div class="markdown-content">Loading details...</div>
-                <div class="project-links">
-                  <a href="https://github.com/ColbyRReichenbach/Marketing-bandit-roi" target="_blank"
-                    class="btn-link">GitHub
-                    Repo</a>
-                  <a href="https://marketing-bandit-roi-rzjtitqbqc26utskvbedat.streamlit.app/" target="_blank"
-                    class="btn-link">Live App</a>
-                </div>
-              </div>
-            </div>
+  <!-- Bandit Modal -->
+  <div id="modal_bandit" class="project-modal" data-markdown-source="project_previews/marketing_bandit_preview.md">
+    <div class="project-modal-content">
+      <span class="close-project">&times;</span>
+      <div class="project-modal-body">
+        <div class="project-media">
+          <img src="static/images/marketing_bandit.png" alt="Marketing Bandit">
+        </div>
+        <div class="project-info">
+          <h3>Marketing Bandit</h3>
+          <div class="markdown-content">Loading details...</div>
+          <div class="project-links">
+            <a href="https://github.com/ColbyRReichenbach/Marketing-bandit-roi" target="_blank" class="btn-link">GitHub
+              Repo</a>
+            <a href="https://marketing-bandit-roi-rzjtitqbqc26utskvbedat.streamlit.app/" target="_blank"
+              class="btn-link">Live App</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Self Optimizing Modal -->
-        <div id="modal_self" class="project-modal" data-markdown-source="project_previews/self_optimizing_preview.md">
-          <div class="project-modal-content">
-            <span class="close-project">&times;</span>
-            <div class="project-modal-body">
-              <div class="project-media">
-                <img src="static/images/self_optimizing.png" alt="Self Optimizing Campaign">
-              </div>
-              <div class="project-info">
-                <h3>Self Optimizing Campaign</h3>
-                <div class="markdown-content">Loading details...</div>
-                <div class="project-links">
-                  <a href="https://github.com/ColbyRReichenbach/Self-Optimizing-Ad-Campaign" target="_blank"
-                    class="btn-link">GitHub Repo</a>
-                  <a href="https://self-optimizing-ad-campaign-cvyuyilsfhqbprtznidsjb.streamlit.app/" target="_blank"
-                    class="btn-link">Live App</a>
-                </div>
-              </div>
-            </div>
+  <!-- Self Optimizing Modal -->
+  <div id="modal_self" class="project-modal" data-markdown-source="project_previews/self_optimizing_preview.md">
+    <div class="project-modal-content">
+      <span class="close-project">&times;</span>
+      <div class="project-modal-body">
+        <div class="project-media">
+          <img src="static/images/self_optimizing.png" alt="Self Optimizing Campaign">
+        </div>
+        <div class="project-info">
+          <h3>Self Optimizing Campaign</h3>
+          <div class="markdown-content">Loading details...</div>
+          <div class="project-links">
+            <a href="https://github.com/ColbyRReichenbach/Self-Optimizing-Ad-Campaign" target="_blank"
+              class="btn-link">GitHub Repo</a>
+            <a href="https://self-optimizing-ad-campaign-cvyuyilsfhqbprtznidsjb.streamlit.app/" target="_blank"
+              class="btn-link">Live App</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Proactive Retention Modal -->
-        <div id="modal_proactive" class="project-modal"
-          data-markdown-source="project_previews/proactive_retention_agent.md">
-          <div class="project-modal-content">
-            <span class="close-project">&times;</span>
-            <div class="project-modal-body">
-              <div class="project-media">
-                <img src="static/images/proactive_retention_agent.png" alt="Proactive Retention Agent">
-              </div>
-              <div class="project-info">
-                <h3>Proactive Retention Agent</h3>
-                <div class="markdown-content">Loading details...</div>
-                <div class="project-links">
-                  <a href="https://github.com/ColbyRReichenbach/proactive-retention-agent-build" target="_blank"
-                    class="btn-link">GitHub Repo</a>
-                </div>
-              </div>
-            </div>
+  <!-- Proactive Retention Modal -->
+  <div id="modal_proactive" class="project-modal" data-markdown-source="project_previews/proactive_retention_agent.md">
+    <div class="project-modal-content">
+      <span class="close-project">&times;</span>
+      <div class="project-modal-body">
+        <div class="project-media">
+          <img src="static/images/proactive_retention_agent.png" alt="Proactive Retention Agent">
+        </div>
+        <div class="project-info">
+          <h3>Proactive Retention Agent</h3>
+          <div class="markdown-content">Loading details...</div>
+          <div class="project-links">
+            <a href="https://github.com/ColbyRReichenbach/proactive-retention-agent-build" target="_blank"
+              class="btn-link">GitHub Repo</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <script src="static/script.js?v=2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="static/script.js?v=2.0"></script>
 </body>
 
 </html>
