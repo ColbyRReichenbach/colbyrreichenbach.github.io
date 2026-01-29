@@ -3,7 +3,6 @@
 ## Project Overview
 Pulse Tracker is a production-hardened athletic training platform powered by a custom fine-tuned RAG architecture. It serves as a case study in building reliable, context-aware AI agents that can safely manage physical training protocols while adhering to strict privacy and safety guardrails.
 
-![Pulse Dashboard](static/images/pulse_preview.png)
 
 ## Key Highlights
 *   **Production-Grade AI Safety & Evals:** Built a robust evaluation pipeline using **Promptfoo** to continuously test model behavior against adversarial techniques. Implemented CI/CD integration tests for prompt injection and deterministic regex-based guardrails to intercept forbidden terms.
