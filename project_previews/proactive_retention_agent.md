@@ -1,19 +1,33 @@
 # Proactive Retention Agent
 
-## Project Overview
-A state-of-the-art **MLOps & LLMOps** pipeline that automates customer retention. It doesn't just predict churn; it explains *why* and prioritizes *who* to call using Generative AI.
+### MLOps + LLMOps Pipeline · Real Telecom Data
 
-## Key Highlights
-*   **End-to-End Pipeline:** From raw data ingestion to a deployed API, demonstrating full-stack Data Science capabilities.
-*   **XGBoost Service:** A high-recall Churn Prediction model served via **FastAPI** in a **Docker** container.
-*   **Generative AI Integration:** Uses **Google Gemini API** to analyze customer complaints and sentiment, generating natural-language summaries for retention agents.
-*   **Business Logic Layer:** Calculates a **Priority Score** (CLTV × Churn Probability) to ensure agents focus on the highest-value saves first.
-*   **Interactive Dashboard:** A Streamlit frontend for non-technical stakeholders to view the "Hot List" of at-risk customers.
+---
 
-## Tech Stack
-*   **Python**: Core language.
-*   **XGBoost**: Predictive modeling.
-*   **Google Gemini API**: Large Language Model (LLM) for text analysis.
-*   **Docker**: Containerization for reproducibility.
-*   **FastAPI**: Model serving.
-*   **Streamlit**: User interface.
+By the time a telecom analyst finds a high-risk customer,
+that customer has usually already decided to leave.
+
+**The problem:** Retention teams are reactive by default. This system flips 
+that — automatically surfacing the right customers, in the right priority 
+order, with the context needed to act immediately.
+
+---
+
+**What it does:**
+
+A high-recall XGBoost churn model (69% recall vs. 55% baseline — deliberately 
+tuned to minimize missed churners over false positives) runs containerized in 
+Docker and served via FastAPI. Google Gemini classifies live customer complaint 
+text by theme and sentiment, turning unstructured data into structured risk 
+signals. A business logic layer combines churn probability with Customer 
+Lifetime Value to produce a Priority Score — so retention teams always call 
+the highest expected-value customers first, not just the most recently flagged.
+
+The Streamlit dashboard runs in two modes: Demo for instant exploration, 
+Live Pipeline for real-time ML + LLM integration with full technical 
+transparency — raw API responses, feature values, and prompt templates visible.
+
+---
+
+**Stack:** Python · XGBoost · FastAPI · Docker · Google Gemini API · 
+Streamlit · Pandas · Scikit-learn
