@@ -8,7 +8,7 @@ Retailers lose billions annually to stockouts and overstocks.
 The existing tools are either enterprise-only or too simple to matter.
 
 **The problem:** Mid-market retailers need demand forecasting, real-time 
-inventory signals, and ML-driven reorder logic — delivered to the right 
+inventory signals, and ML-driven reorder logic, delivered to the right
 person at the right level of detail. ShelfOps is built around that exact 
 workflow, from POS data ingestion to store-level forecast delivery.
 
@@ -19,7 +19,7 @@ workflow, from POS data ingestion to store-level forecast delivery.
 The backend is async FastAPI + SQLAlchemy, Celery task queues, 
 PostgreSQL/TimescaleDB, Redis caching, and Redpanda/Kafka-compatible event 
 streaming. The ML layer runs XGBoost and LSTM forecasting pipelines through 
-a model registry with fail-closed promotion gates — the same governance 
+a model registry with fail-closed promotion gates, the same governance
 pattern used in SPEC-NYC, applied to demand signals.
 
 The dashboard is multi-level by design: C-suite sees revenue impact and 

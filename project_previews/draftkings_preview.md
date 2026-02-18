@@ -7,7 +7,7 @@
 Built for one specific job. One specific team. One specific problem.
 
 **The problem:** Responsible gaming analysts at sportsbooks manually review 
-hundreds of flagged player cases daily — without consistent tooling, 
+hundreds of flagged player cases daily, without consistent tooling,
 regulatory context, or case history. DK Sentinel was designed from the ground 
 up to fix that workflow, targeting DraftKings' RG Analytics team directly.
 
@@ -18,7 +18,7 @@ up to fix that workflow, targeting DraftKings' RG Analytics team directly.
 A dbt transformation layer models raw behavioral event data into analyst-ready 
 risk signals: session duration variance, deposit velocity, loss chasing 
 patterns, time-of-day clustering. The FastAPI backend exposes read-only SQL 
-execution with Snowflake-safe guardrails — analysts run evidence queries 
+execution with Snowflake-safe guardrails so analysts run evidence queries
 directly from the UI, no data modification risk.
 
 The React/TypeScript frontend provides a persisted case queue with full 
