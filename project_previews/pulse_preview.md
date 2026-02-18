@@ -1,15 +1,36 @@
-# Pulse Tracker: AI-Native Training Ecosystem
+# Pulse Tracker
 
-## Project Overview
-Pulse Tracker is a production-hardened athletic training platform powered by a custom fine-tuned RAG architecture. It serves as a case study in building reliable, context-aware AI agents that can safely manage physical training protocols while adhering to strict privacy and safety guardrails.
+### Multi-Tenant AI Coaching SaaS · Live & Deployed
 
+---
 
-## Key Highlights
-*   **Production-Grade AI Safety & Evals:** Built a robust evaluation pipeline using **Promptfoo** to continuously test model behavior against adversarial techniques. Implemented CI/CD integration tests for prompt injection and deterministic regex-based guardrails to intercept forbidden terms.
-*   **Context-Aware RAG Architecture:** Implemented a semantic **Context Router** that builds dynamic XML system prompts based on user intent (Logistics vs. Injury vs. Analysis). Used stateful persona switching to toggle between "Analytic" and "Coach" modes based on user metadata.
-*   **Privacy-First Tool Use:** Architected a granular permission layer for Function Calling. Hard-coded logic disables tool definitions for "Private" users, preventing the model from hallucinating data access, and enforced Redis-backed rate limiting at the edge.
+Most "AI apps" are wrappers around an API call.
+This one is a production system.
 
-## Tech Stack
-*   **AI/LLM**: GPT-4o-mini (Vortex Optimized), Vercel AI SDK (StreamText), Promptfoo
-*   **Backend**: Next.js 16 App Router, Supabase (RLS), Edge Functions
-*   **Infrastructure**: Upstash Redis (Rate Limiting), Sentry (Observability)
+**The problem:** Building a real AI application means solving problems that 
+have nothing to do with the model — rate limiting, user data isolation, 
+safety evaluation, error monitoring, and a test suite that actually runs. 
+Pulse solves all of it, and it's live.
+
+---
+
+**What it is:**
+
+A multi-tenant training and AI coaching platform built entirely solo using 
+AI-assisted development — compressing what normally requires a frontend 
+engineer, backend engineer, security engineer, and AI engineer into a single 
+production deployment.
+
+Supabase Row Level Security enforces absolute data isolation between users 
+at the database level. Upstash Redis rate-limits AI endpoints. The coaching 
+assistant (ECHO-P1) classifies user intent before routing to specialized 
+response contexts, with PII redaction, prompt injection detection, and 
+immutable audit logging on every interaction. LLM safety is evaluated with 
+Promptfoo test suites — not just vibes-checked. Vitest unit tests, Playwright 
+e2e tests, Sentry monitoring, and GitHub Actions CI round out the production 
+hardening.
+
+---
+
+**Stack:** Next.js 16 · TypeScript · Supabase · OpenAI GPT-4o-mini · 
+Upstash Redis · Promptfoo · Playwright · Vitest · Sentry · Vercel
