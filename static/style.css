@@ -161,7 +161,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .portrait-core img {
   border-radius: inherit;
   border: 7px solid var(--cream);
-  object-position: center 18%;
+  object-position: center 44%;
 }
 .me-node:hover .portrait-core,
 .me-node:focus-visible .portrait-core {
@@ -208,6 +208,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   font-weight: 800;
   white-space: nowrap;
 }
+.me-node .node-label { bottom: -4px; }
 .node-label span {
   grid-area: 1 / 1;
   transition: opacity 180ms ease, transform 220ms ease;
