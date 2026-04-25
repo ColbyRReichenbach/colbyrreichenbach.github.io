@@ -30,47 +30,43 @@
 
   <nav class="top-nav" aria-label="Primary navigation">
     <a class="brand" href="/" aria-label="Home"><span class="brand-mark">CR</span><span>Colby</span></a>
-    <div class="nav-links">
-      <a href="/me/">/ Me</a>
-      <a href="/work/">/ Work</a>
-    </div>
     <a class="nav-cta" href="static/images/ColbyReichenbach_Resume_1.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
   </nav>
 
   <main class="home-scene" aria-labelledby="hero-title">
-    <div class="home-projects" aria-label="Featured project previews">
-      <button class="home-project-card card-a" type="button" data-project="shelfops">
-        <span class="flipbook"><img src="static/images/shelfops.png" alt="ShelfOps preview" /><img src="static/images/spec_valuation.png" alt="" /></span>
-        <strong>ShelfOps</strong>
-      </button>
-      <button class="home-project-card card-b" type="button" data-project="spec">
-        <span class="flipbook"><img src="static/images/spec_valuation.png" alt="SPEC-NYC preview" /><img src="static/images/Feature_Importance.png" alt="" /></span>
-        <strong>SPEC-NYC</strong>
-      </button>
-      <button class="home-project-card card-c" type="button" data-project="aibs">
-        <span class="flipbook"><img src="static/images/AIBS.png" alt="AiBS preview" /><img src="static/images/mlb_dash.jpg" alt="" /></span>
-        <strong>AiBS</strong>
-      </button>
-      <button class="home-project-card card-d" type="button" data-project="pulse">
-        <span class="flipbook"><img src="static/images/pulse_preview.png" alt="Pulse Tracker preview" /><img src="static/images/proactive_retention_agent.png" alt="" /></span>
-        <strong>Pulse</strong>
-      </button>
-      <button class="home-project-card card-e" type="button" data-project="masters">
-        <span class="flipbook"><img src="static/images/masters_rewind.jpg" alt="Masters Intelligence preview" /><img src="static/images/tableau.png" alt="" /></span>
-        <strong>Masters</strong>
-      </button>
-      <button class="home-project-card card-f" type="button" data-project="draftkings">
-        <span class="flipbook"><img src="static/images/draftkings.png" alt="DK Sentinel preview" /><img src="static/images/campaign_performance_metrics.png" alt="" /></span>
-        <strong>DK Sentinel</strong>
-      </button>
-    </div>
-
     <section class="center-stage">
-      <a class="stage-link stage-link-me" href="/me/">/ Me</a>
-      <div class="portrait-core" tabindex="0" aria-label="Portrait hover area">
-        <img src="static/images/headshot.jpg" alt="Colby Reichenbach" />
+      <a class="stage-node me-node" href="/me/" aria-label="Learn about me">
+        <span class="portrait-core">
+          <img src="static/images/headshot.jpg" alt="Colby Reichenbach" />
+        </span>
+        <span class="node-label"><span>/ Me</span><span>Learn about me</span></span>
+      </a>
+
+      <div class="stage-node work-node">
+        <a class="work-core" href="/work/" aria-label="View work">
+          <span class="flipbook"><img src="static/images/AIBS.png" alt="AiBS project preview" /><img src="static/images/mlb_dash.jpg" alt="" /></span>
+          <span class="node-label"><span>/ Work</span><span>View work</span></span>
+        </a>
+
+        <div class="home-projects" aria-label="Featured project previews">
+          <button class="home-project-card card-a" type="button" data-project="shelfops">
+            <span class="flipbook"><img src="static/images/shelfops.png" alt="ShelfOps preview" /><img src="static/images/spec_valuation.png" alt="" /></span>
+            <strong>ShelfOps</strong>
+          </button>
+          <button class="home-project-card card-b" type="button" data-project="spec">
+            <span class="flipbook"><img src="static/images/spec_valuation.png" alt="SPEC-NYC preview" /><img src="static/images/Feature_Importance.png" alt="" /></span>
+            <strong>SPEC-NYC</strong>
+          </button>
+          <button class="home-project-card card-c" type="button" data-project="masters">
+            <span class="flipbook"><img src="static/images/masters_rewind.jpg" alt="Masters Intelligence preview" /><img src="static/images/tableau.png" alt="" /></span>
+            <strong>Masters</strong>
+          </button>
+          <button class="home-project-card card-d" type="button" data-project="draftkings">
+            <span class="flipbook"><img src="static/images/draftkings.png" alt="DK Sentinel preview" /><img src="static/images/campaign_performance_metrics.png" alt="" /></span>
+            <strong>DK Sentinel</strong>
+          </button>
+        </div>
       </div>
-      <a class="stage-link stage-link-work" href="/work/">/ Work</a>
     </section>
 
     <section class="home-copy" aria-labelledby="hero-title">
