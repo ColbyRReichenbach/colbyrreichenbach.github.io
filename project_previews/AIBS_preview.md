@@ -1,21 +1,65 @@
 # AiBS
 
-### Baseball Analytics Intelligence Platform · Live & Deployed
+### Real-Time Sports Analytics Platform
 
 ---
 
-Most sports products visualize games. This one models the decision layer around challenged ball-strike calls.
-
-**The problem:** MLB’s ABS challenge era created a new analytics surface — challenge timing, overturn patterns, umpire volatility, and game-state consequence — but there are very few products built to structure that information into something analyzable. AiBS turns ABS events into a full analytical system rather than a one-off dashboard.
+I built AiBS as a real-time sports analytics application around MLB ABS challenge data. The goal was to turn live challenge events into normalized entities, reporting views, article outputs, and interactive reporting for game, team, and umpire analysis.
 
 ---
 
-**What it is:**
+## Problem
 
-A full-stack baseball analytics platform built around MLB ABS challenge data, spanning live game pages, team and umpire intelligence, bounded AI-assisted interpretation, and editorial workflows. The product supports both fan and org viewing modes, changing the framing and analytical emphasis without changing the underlying facts.
-
-Under the hood, AiBS uses PostgreSQL as the serving and product database, Python ETL for ingestion and enrichment, and a SQL-first application pattern to power server-rendered analytical views. The product currently includes pregame/live/final game hubs, challenge timelines, strike-zone drilldowns, leaderboard and detail-page analytics, baseball-scoped AI workflows with authenticated bounded tools and telemetry, and editorial/community infrastructure including publishing, comments, moderation, and public profiles. Testing includes Vitest, Playwright, and Python unittest coverage. 
+ABS challenge events create a new analytical layer: challenge timing, overturn patterns, umpire variance, team behavior, location context, and game-state consequence. Those signals are hard to reason about from isolated events or static box scores. I built AiBS to organize them into a reporting system someone could actually use.
 
 ---
 
-**Stack:** Next.js 16 · React 19 · TypeScript · PostgreSQL · Python ETL · OpenAI · Clerk · Vitest · Playwright
+## Data and workflow
+
+AiBS works with ABS challenge events, game metadata, enrichment data, standings snapshots, and warehouse and serving tables.
+
+The workflow is:
+
+```text
+live events
+-> normalized entities
+-> analytical views
+-> game, team, and umpire reporting
+-> editorial output and product UX
+-> text summaries where useful
+```
+
+---
+
+## System
+
+The project includes:
+
+- Next.js, React, and TypeScript application surfaces.
+- PostgreSQL serving and product database.
+- Python ETL for ingestion and enrichment.
+- Warehouse-to-serving publishing and reconciliation patterns.
+- SQL-first analytical views for reporting.
+- text summaries tied to baseball context.
+- Clerk authentication.
+- Publishing, commenting, moderation, and public-facing content features.
+
+---
+
+## Evaluation and reliability
+
+I added Vitest, Playwright, Python unittest coverage, service health checks, database smoke checks, warehouse-serving reconciliation scripts, release smoke tests, and telemetry.
+
+What I would want someone to take away from this project is the system pattern: live events, normalized data, reporting views, user-facing application surfaces, and quality checks across the full path.
+
+---
+
+## Best fit
+
+Analytics Engineering · Real-Time Data Systems · Application Engineering · Data Product Engineering
+
+---
+
+## Stack
+
+Next.js · React · TypeScript · PostgreSQL · Python ETL · Clerk · Vitest · Playwright

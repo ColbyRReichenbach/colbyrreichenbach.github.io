@@ -1,33 +1,50 @@
 # Proactive Retention Agent
 
-### MLOps + LLMOps Pipeline · Real Telecom Data
+### Churn Risk Decision Workflow
 
 ---
 
-By the time a telecom analyst finds a high-risk customer,
-that customer has usually already decided to leave.
-
-**The problem:** Retention teams are reactive by default. This system flips 
-that by automatically surfacing the right customers, in the right priority
-order, with the context needed to act immediately.
+I built Proactive Retention Agent to turn churn modeling into a reviewable analyst queue. It combines churn probability, customer value, and complaint context so a retention team can prioritize who to contact, why they are at risk, and what context should shape the response.
 
 ---
 
-**What it does:**
+## Problem
 
-A high-recall XGBoost churn model (69% recall vs. 55% baseline, deliberately
-tuned to minimize missed churners over false positives) runs containerized in 
-Docker and served via FastAPI. Google Gemini classifies live customer complaint 
-text by theme and sentiment, turning unstructured data into structured risk 
-signals. A business logic layer combines churn probability with Customer 
-Lifetime Value to produce a Priority Score, so retention teams always call
-the highest expected-value customers first, not just the most recently flagged.
-
-The Streamlit dashboard runs in two modes: Demo for instant exploration, 
-Live Pipeline for real-time ML + LLM integration with full technical 
-transparency: raw API responses, feature values, and prompt templates visible.
+A churn score alone does not tell a team what to do next. Retention workflows need prioritization, business logic, and context. A moderate-risk customer with high lifetime value may matter more than a high-risk customer with low value, and complaint text often explains why the risk exists.
 
 ---
 
-**Stack:** Python · XGBoost · FastAPI · Docker · Google Gemini API · 
-Streamlit · Pandas · Scikit-learn
+## Data and workflow
+
+I used a telecom churn dataset, structured customer features, complaint text, and customer lifetime value inputs. The workflow turns model output into a ranked analyst queue rather than a standalone prediction table.
+
+---
+
+## System
+
+The system includes:
+
+- XGBoost churn model served through FastAPI.
+- Dockerized API and model layer.
+- complaint theme and sentiment classification service.
+- Priority logic that combines churn probability and customer value.
+- Streamlit dashboard with demo and live pipeline modes.
+- Transparent inspection of API responses, feature values, and prompts.
+
+---
+
+## Evaluation and reliability
+
+I tuned the model for recall because missed churners are more costly in this workflow than extra review volume. I also compare that tuning against a baseline and expose the decision logic so a reviewer can inspect why each customer was prioritized.
+
+---
+
+## Best fit
+
+Product Data Science · ML Engineering · Text Classification · Business Analytics
+
+---
+
+## Stack
+
+Python · XGBoost · FastAPI · Docker · Streamlit · Pandas · Scikit-learn

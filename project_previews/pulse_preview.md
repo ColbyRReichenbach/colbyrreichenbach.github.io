@@ -1,36 +1,54 @@
 # Pulse Tracker
 
-### Multi-Tenant AI Coaching SaaS · Live & Deployed
+### Multi-Tenant Coaching Platform
 
 ---
 
-Most "AI apps" are wrappers around an API call.
-This one is a production system.
-
-**The problem:** Building a real AI application means solving problems that 
-have nothing to do with the model: rate limiting, user data isolation,
-safety evaluation, error monitoring, and a test suite that actually runs. 
-Pulse solves all of it, and it's live.
+I built Pulse Tracker as a coaching application for hybrid athletes. What I wanted to show here was the product and systems work required to make a generated-response feature usable in practice: authenticated context, user-level data isolation, rate limiting, safety checks, telemetry, and tested application behavior.
 
 ---
 
-**What it is:**
+## Problem
 
-A multi-tenant training and AI coaching platform built entirely solo using 
-AI-assisted development, compressing what normally requires a frontend
-engineer, backend engineer, security engineer, and AI engineer into a single
-production deployment.
-
-Supabase Row Level Security enforces absolute data isolation between users 
-at the database level. Upstash Redis rate-limits AI endpoints. The coaching 
-assistant (ECHO-P1) classifies user intent before routing to specialized 
-response contexts, with PII redaction, prompt injection detection, and 
-immutable audit logging on every interaction. LLM safety is evaluated with 
-Promptfoo test suites, not just vibes-checked. Vitest unit tests, Playwright 
-e2e tests, Sentry monitoring, and GitHub Actions CI round out the production 
-hardening.
+A coaching application cannot just return a generated answer. It has to know which user it is serving, access the right context, protect that user's data, constrain unsafe or irrelevant outputs, and stay observable when something breaks.
 
 ---
 
-**Stack:** Next.js 16 · TypeScript · Supabase · OpenAI GPT-4o-mini · 
-Upstash Redis · Promptfoo · Playwright · Vitest · Sentry · Vercel
+## Data and workflow
+
+Pulse works with user-entered workout logs, bodyweight data, benchmarks, preferences, profile settings, training history, and coaching requests. The workflow connects workout tracking, performance analytics, and user-specific coaching.
+
+---
+
+## System
+
+Pulse includes:
+
+- Next.js and TypeScript product interface.
+- Supabase authentication and Row Level Security patterns.
+- generated response workflow.
+- Context routing and response handling.
+- Upstash Redis rate limiting.
+- Security-aware request handling.
+- Sentry monitoring and Vercel observability.
+- Workout, analytics, profile, settings, onboarding, and admin surfaces.
+
+---
+
+## Evaluation and reliability
+
+I added Vitest unit and integration tests, Playwright end-to-end tests, request and security tests, auth checks, health checks, validation tests, middleware tests, and query analytics.
+
+The part I care most about in this project is the application infrastructure around the generated response: authentication, context, safety, observability, and test coverage.
+
+---
+
+## Best fit
+
+Application Engineering · Full-Stack Product · Product Analytics · User Systems
+
+---
+
+## Stack
+
+Next.js · TypeScript · Supabase · Upstash Redis · Sentry · Vitest · Playwright · Vercel

@@ -1,34 +1,64 @@
 # ShelfOps
 
-### Retail Inventory Intelligence Platform · Full-Stack
+### Inventory Decision System
 
 ---
 
-Retailers lose billions annually to stockouts and overstocks.
-The existing tools are either enterprise-only or too simple to matter.
-
-**The problem:** Mid-market retailers need demand forecasting, real-time 
-inventory signals, and ML-driven reorder logic, delivered to the right
-person at the right level of detail. ShelfOps is built around that exact 
-workflow, from POS data ingestion to store-level forecast delivery.
+I built ShelfOps as an inventory decision system for retail operations. It takes store, SKU, supplier, and inventory signals and turns them into forecasts, stockout alerts, reorder recommendations, and purchase-order review workflows.
 
 ---
 
-**What it does:**
+## Problem
 
-The backend is async FastAPI + SQLAlchemy, Celery task queues, 
-PostgreSQL/TimescaleDB, Redis caching, and Redpanda/Kafka-compatible event 
-streaming. The ML layer runs XGBoost and LSTM forecasting pipelines through 
-a model registry with fail-closed promotion gates, the same governance
-pattern used in SPEC-NYC, applied to demand signals.
-
-The dashboard is multi-level by design: C-suite sees revenue impact and 
-stockout risk summaries. Data science teams see model performance and retrain 
-signals. Store operations see SKU-level forecast alerts and reorder 
-recommendations. Enterprise EDI/SFTP integration paths are built and 
-validated in CI for ERP connectivity.
+Inventory work sits across a lot of noisy systems: transactions, on-hand inventory, supplier constraints, reorder rules, promotions, receiving issues, and exception events. I wanted this project to connect those layers into an operational workflow instead of stopping at a forecast chart.
 
 ---
 
-**Stack:** Python · FastAPI · Celery · PostgreSQL · TimescaleDB · Redis · 
-Kafka · XGBoost · LSTM · React · TypeScript · Docker · GitHub Actions
+## Data and workflow
+
+I modeled stores, products, suppliers, transactions, inventory levels, forecasts, alerts, purchase orders, integration events, anomalies, EDI logs, distribution-center inventory, transfers, shrinkage, planograms, and receiving discrepancies.
+
+That data layer supports replenishment review, inventory-risk monitoring, forecast inspection, and retraining or promotion decisions.
+
+---
+
+## System
+
+ShelfOps includes:
+
+- Async FastAPI backend with SQLAlchemy models and versioned APIs.
+- PostgreSQL and TimescaleDB persistence with Redis caching.
+- Celery workers for forecasts, retraining, EDI, SFTP, event ingestion, monitoring, and scheduling.
+- Kafka-compatible event ingestion patterns.
+- Forecasting workflows and model-governance checks.
+- Human-reviewed purchase-order and alert workflows.
+- React and TypeScript operations dashboard for inventory, forecasts, alerts, integrations, and model operations.
+
+---
+
+## Evaluation and reliability
+
+I also built tests and validation paths for API behavior, data contracts, EDI and SFTP flows, event ingestion, forecast endpoints, model quality checks, promotion gates, retraining failure modes, rollback paths, security guardrails, and purchase-order workflows.
+
+The part I would want a hiring manager to notice is the full operational pattern:
+
+```text
+messy retail data
+-> structured domain model
+-> forecasting and alert layer
+-> human review workflow
+-> dashboard surfaces
+-> model and integration checks
+```
+
+---
+
+## Best fit
+
+Data Engineering · Analytics Engineering · MLOps · Operations Systems · Applied Data Systems
+
+---
+
+## Stack
+
+Python · FastAPI · SQLAlchemy · PostgreSQL · TimescaleDB · Redis · Celery · Kafka-compatible ingestion · React · TypeScript · Docker

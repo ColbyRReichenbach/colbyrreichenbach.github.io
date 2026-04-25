@@ -1,35 +1,55 @@
 # SPEC-NYC
 
-### Production Automated Valuation Model · NYC Real Estate
+### Automated Valuation Workflow
 
 ---
 
-Most AVM demos stop at "I got a good R²."
-This one doesn't.
-
-**The problem:** Real estate valuation at scale requires more than a trained 
-model. It requires a system that knows when its predictions are trustworthy,
-when they've drifted, and when to retrain. Built on 1M+ real NYC property 
-transactions, SPEC-NYC is a full production DS workflow, not a notebook.
+I built SPEC-NYC as a production-style valuation workflow on NYC property transaction data. I wanted to focus on the parts of modeling work that matter after training: validation, explainability, segment-level scorecards, promotion checks, and release governance.
 
 ---
 
-**What makes it production-grade:**
+## Problem
 
-The pipeline runs from raw NYC Open Data ingestion (retries, caching, Pandera 
-data contracts) through XGBoost training with Optuna tuning, SHAP 
-explainability artifacts, and a champion/challenger model arena. Every
-promotion requires passing defined gates with human sign-off and a documented
-rollback path. Segment-level scorecards (PPE10, MdAPE, R²) break performance 
-out by property tier so underperforming slices can't hide behind good 
-aggregates. Drift monitoring and release validation tell the system when to 
-retrain.
-
-Every experiment is hypothesis-driven: tracked with a hypothesis ID, dataset 
-version, feature set version, and pass/fail criteria before a single line of 
-training code runs.
+Valuation work cannot stop at a single aggregate metric. I wanted a workflow that shows where the model performs well, where it fails, what changed between versions, and what evidence supports promotion or rollback.
 
 ---
 
-**Stack:** Python · XGBoost · Optuna · MLflow · SHAP · Pandera · Docker · 
-FastAPI · Streamlit · NYC Open Data
+## Data and workflow
+
+I used NYC Open Data property transaction records and derived feature and segment datasets. The workflow moves from ingestion and validation to model training, scorecard generation, governance review, and release readiness.
+
+---
+
+## System
+
+SPEC-NYC includes:
+
+- Raw data ingestion with retries and caching patterns.
+- Pandera data contracts.
+- XGBoost training with Optuna tuning.
+- MLflow experiment tracking.
+- SHAP explainability artifacts.
+- Champion-challenger comparison.
+- Human approval gates for promotion.
+- Segment-level scorecards.
+- FastAPI and Streamlit inspection surfaces.
+
+---
+
+## Evaluation and reliability
+
+I evaluate model performance with PPE10, MdAPE, and R², then break those metrics out by segment so weak slices do not disappear inside acceptable aggregate metrics.
+
+I also track experiments with hypothesis IDs, dataset versions, feature-set versions, and pass-fail criteria so promotion decisions are reproducible.
+
+---
+
+## Best fit
+
+MLOps · ML Engineering · Product Data Science · Model Evaluation · Data Quality
+
+---
+
+## Stack
+
+Python · XGBoost · Optuna · MLflow · SHAP · Pandera · FastAPI · Streamlit · Docker · NYC Open Data

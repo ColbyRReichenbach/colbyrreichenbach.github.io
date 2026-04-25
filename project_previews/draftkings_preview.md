@@ -1,34 +1,55 @@
 # DK Sentinel
 
-### Responsible Gaming Intelligence System · DraftKings
+### Responsible Gaming Case Review System
 
 ---
 
-Built for one specific job. One specific team. One specific problem.
-
-**The problem:** Responsible gaming analysts at sportsbooks manually review 
-hundreds of flagged player cases daily, without consistent tooling,
-regulatory context, or case history. DK Sentinel was designed from the ground 
-up to fix that workflow, targeting DraftKings' RG Analytics team directly.
+DK Sentinel is a responsible-gaming analytics project centered on case review, risk-signal modeling, evidence tracking, and analyst workflow. It is structured as a regulated case-management and reporting system for sportsbook risk review.
 
 ---
 
-**What it does:**
+## Problem
 
-A dbt transformation layer models raw behavioral event data into analyst-ready 
-risk signals: session duration variance, deposit velocity, loss chasing 
-patterns, time-of-day clustering. The FastAPI backend exposes read-only SQL 
-execution with Snowflake-safe guardrails so analysts run evidence queries
-directly from the UI, no data modification risk.
-
-The React/TypeScript frontend provides a persisted case queue with full 
-lifecycle tracking (Not Started → In Progress → Submitted), a case file 
-workbench with HITL analyst notes and AI-assisted review, and a 
-manager-grade dashboard tracking throughput, rigor scores, and compliance 
-signals. State-level regulatory logic for MA, NJ, and PA is implemented as 
-deterministic SQL checks logged as auditable evidence records.
+Responsible-gaming analysts need to review behavioral risk signals, inspect the evidence behind each flag, maintain case history, and apply state-specific compliance context. A useful system needs deterministic checks, auditability, human review, and clear lifecycle management.
 
 ---
 
-**Stack:** Python · dbt · DuckDB · Snowflake · FastAPI · React · TypeScript · 
-OpenAI API · GitHub Actions · Vercel
+## Data and workflow
+
+The project models behavioral event data into analyst-facing risk signals such as session-duration variance, deposit velocity, loss-chasing patterns, and time-of-day clustering. It also tracks case status, analyst notes, regulatory evidence, and manager-level throughput metrics.
+
+---
+
+## System
+
+DK Sentinel includes:
+
+- dbt transformation layer for behavioral-risk signals.
+- DuckDB and Snowflake-style analytical modeling.
+- FastAPI backend.
+- Read-only SQL execution guardrails.
+- React and TypeScript case queue and case workbench.
+- Analyst notes and review workflow.
+- assisted review support.
+- Deterministic state-level regulatory checks.
+- Manager dashboard for throughput, rigor, and compliance signals.
+
+---
+
+## Evaluation and reliability
+
+The strongest reliability signal is the separation between deterministic compliance checks and assisted review. The system is designed to support analyst judgment, not replace it.
+
+This project is framed as a responsible-gaming case review system for sportsbook analytics workflows, not as work delivered for a specific company.
+
+---
+
+## Best fit
+
+Analytics Engineering · Compliance Analytics · Data Product Engineering · Workflow Automation
+
+---
+
+## Stack
+
+Python · dbt · DuckDB · Snowflake-style modeling · FastAPI · React · TypeScript · GitHub Actions · Vercel
