@@ -204,13 +204,13 @@ h1 { font-size: clamp(3rem, 7vw, 7.6rem); line-height: 0.92; max-width: 980px; }
 }
 .hero-proof span { text-align: right; }
 
-.intro-panel, .process-section, .contact-section {
+.intro-panel, .process-section, .education-section, .contact-section {
   max-width: calc(var(--max) - 56px);
   margin: 0 auto;
   border-top: 1px solid var(--faint);
   padding: 86px 0;
 }
-.intro-panel, .contact-section {
+.intro-panel, .education-section, .contact-section {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: 42px;
@@ -371,6 +371,39 @@ h2 { font-size: clamp(2.6rem, 5vw, 5.8rem); line-height: 0.95; }
 .process-grid span { color: var(--carolina); }
 .process-grid h3 { font-size: 1.5rem; margin: 52px 0 12px; }
 .process-grid p { color: var(--muted); line-height: 1.55; }
+.education-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 18px 20px;
+  border: 1px solid var(--faint);
+  border-radius: 22px;
+  background: rgba(255,255,255,.42);
+  box-shadow: 0 20px 60px rgba(19,41,75,.08);
+}
+.education-card img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid rgba(19,41,75,.1);
+}
+.education-card strong,
+.education-card span {
+  display: block;
+}
+.education-card strong {
+  font-size: 1.08rem;
+  color: var(--text);
+}
+.education-card span {
+  margin-top: 4px;
+  color: var(--muted);
+}
 .contact-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 .contact-actions a, .modal-links a {
   display: inline-flex;
@@ -434,7 +467,9 @@ h2 { font-size: clamp(2.6rem, 5vw, 5.8rem); line-height: 0.95; }
   .hero-services, .hero-proof { position: static; transform: none; width: auto; margin-top: 24px; text-align: left; }
   .hero-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-proof span { text-align: left; }
-  .intro-panel, .contact-section { grid-template-columns: 1fr; padding: 64px 18px; }
+  .brand { font-size: 1rem; }
+  .brand-path { display: none; }
+  .intro-panel, .education-section, .contact-section { grid-template-columns: 1fr; padding: 64px 18px; }
   .process-section { padding: 64px 18px; }
   .work-section { padding: 64px 18px; }
   .work-header { align-items: start; flex-direction: column; }
