@@ -130,6 +130,7 @@ main { position: relative; z-index: 2; }
   align-items: end;
 }
 .hero-visual {
+  position: relative;
   align-self: center;
   justify-self: end;
   width: min(100%, 460px);
@@ -137,10 +138,21 @@ main { position: relative; z-index: 2; }
   justify-items: center;
   gap: 22px;
 }
+.hero-work-cluster {
+  position: absolute;
+  left: -36px;
+  top: -22px;
+  width: min(100%, 420px);
+  min-height: 250px;
+  z-index: 6;
+  pointer-events: none;
+}
 .hero-portrait {
   position: relative;
   display: grid;
   place-items: center;
+  isolation: isolate;
+  outline: none;
 }
 .portrait-ring {
   position: relative;
@@ -151,6 +163,7 @@ main { position: relative; z-index: 2; }
   background: linear-gradient(135deg, var(--carolina), #ffffff 50%, var(--gold));
   box-shadow: 0 28px 80px rgba(75,156,211,.32);
   animation: portraitFloat 5s ease-in-out infinite;
+  transition: transform 260ms ease, box-shadow 260ms ease;
 }
 .portrait-ring img {
   border-radius: inherit;
@@ -158,19 +171,153 @@ main { position: relative; z-index: 2; }
   object-position: center 18%;
   border: 8px solid var(--cream);
 }
-.portrait-unc {
+.hero-portrait:hover .portrait-ring,
+.hero-portrait:focus-visible .portrait-ring,
+.hero-portrait:focus-within .portrait-ring {
+  transform: translateY(-8px) rotate(1deg);
+  box-shadow: 0 32px 90px rgba(75,156,211,.42);
+}
+.portrait-popout {
   position: absolute;
-  width: clamp(58px, 7vw, 98px);
-  height: auto;
-  transform: translate(112px, 104px) rotate(-8deg);
-  filter: drop-shadow(0 12px 28px rgba(19,41,75,.18));
+  inset: -22px;
+  pointer-events: none;
+  z-index: -1;
+}
+.personal-card {
+  position: absolute;
+  min-width: 190px;
+  padding: 12px 14px;
+  border: 1px solid var(--faint);
+  border-radius: 18px;
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 18px 50px rgba(19,41,75,.1);
+  color: var(--carolina-deep);
+  font-weight: 700;
+  line-height: 1.15;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0) scale(.94);
+  transition: opacity 220ms ease, transform 260ms ease;
+}
+.personal-card small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 600;
+}
+.personal-card-education {
+  left: -230px;
+  top: 26px;
+}
+.personal-card-location {
+  left: -244px;
+  top: 126px;
+}
+.personal-card-focus {
+  left: -214px;
+  bottom: 24px;
+}
+.hero-portrait:hover .personal-card,
+.hero-portrait:focus-visible .personal-card,
+.hero-portrait:focus-within .personal-card {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
 }
 .hero-work-link {
-  position: static;
-  justify-self: start;
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
   color: var(--carolina-deep);
   font-size: 1rem;
   transform: none;
+  background: rgba(255,255,255,.36);
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+  pointer-events: auto;
+}
+.hero-work-link:hover,
+.hero-work-link:focus-visible {
+  border-color: var(--faint);
+  background: rgba(255,255,255,.72);
+  color: var(--carolina);
+}
+.work-popout {
+  position: absolute;
+  left: 16px;
+  top: 44px;
+  width: 430px;
+  height: 230px;
+  pointer-events: none;
+  z-index: 4;
+}
+.work-popout button {
+  position: absolute;
+  width: 178px;
+  height: 116px;
+  overflow: hidden;
+  border: 1px solid rgba(19,41,75,.12);
+  border-radius: 16px;
+  background: var(--panel-strong);
+  box-shadow: 0 18px 50px rgba(19,41,75,.14);
+  opacity: 0;
+  transform: translate3d(-24px, 18px, 0) rotate(var(--r, 0deg)) scale(.9);
+  transition: opacity 220ms ease, transform 260ms ease;
+}
+.work-popout button:nth-child(1) {
+  --r: -5deg;
+  left: 0;
+  top: 42px;
+}
+.work-popout button:nth-child(2) {
+  --r: 4deg;
+  left: 118px;
+  top: 0;
+}
+.work-popout button:nth-child(3) {
+  --r: -2deg;
+  left: 236px;
+  top: 74px;
+}
+.work-popout img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.9);
+}
+.work-popout span {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  padding: 7px 9px;
+  border-radius: 10px;
+  background: rgba(255,250,239,.88);
+  color: var(--text);
+  font-size: .82rem;
+  font-weight: 700;
+  text-align: left;
+}
+.hero-work-link:hover + .work-popout,
+.hero-work-link:focus-visible + .work-popout,
+.work-popout:hover,
+.work-popout:focus-within,
+.hero-work-cluster:focus-within .work-popout {
+  pointer-events: auto;
+}
+.hero-work-link:hover + .work-popout button,
+.hero-work-link:focus-visible + .work-popout button,
+.work-popout:hover button,
+.work-popout:focus-within button,
+.hero-work-cluster:focus-within .work-popout button {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(var(--r, 0deg)) scale(1);
+}
+.work-popout button:hover,
+.work-popout button:focus-visible {
+  z-index: 5;
+  transform: translate3d(0, -8px, 0) rotate(0deg) scale(1.04) !important;
 }
 .hero-copy {
   align-self: end;
@@ -472,10 +619,11 @@ h2 { font-size: clamp(2.6rem, 5vw, 5.8rem); line-height: 0.95; }
   .hero { display: flex; flex-direction: column; padding: 96px 18px 24px; }
   .hero-visual { width: 100%; margin: 0 auto 22px; gap: 14px; }
   .hero-visual { order: -1; }
+  .hero-work-cluster { position: static; order: 2; width: 100%; min-height: auto; }
   .hero-portrait { position: relative; inset: auto; height: 210px; margin: 8px 0 16px; }
   .hero-portrait { order: 1; }
   .portrait-ring { width: 176px; }
-  .portrait-unc { width: 62px; transform: translate(82px, 72px) rotate(-8deg); }
+  .portrait-popout, .work-popout { display: none; }
   .hero-work-link { order: 2; position: static; display: inline-flex; transform: none; margin-bottom: 0; }
   .hero-visual-card { display: none; }
   .hero-copy { padding-bottom: 0; }

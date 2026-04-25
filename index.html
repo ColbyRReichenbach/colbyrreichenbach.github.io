@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="static/style.css?v=4.4" />
+  <link rel="stylesheet" href="static/style.css?v=4.5" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KRK1FSC72E"></script>
   <script>
@@ -83,10 +83,31 @@
         </p>
       </div>
       <div class="hero-visual reveal delay-1">
-        <a class="hero-work-link" href="#work" data-scramble>/ Work</a>
-        <div class="hero-portrait" aria-label="Portrait of Colby Reichenbach">
+        <div class="hero-work-cluster">
+          <a class="hero-work-link" href="#work" data-scramble>/ Work</a>
+          <div class="work-popout" aria-label="Featured project previews">
+            <button type="button" data-hero-project="shelfops">
+              <img src="static/images/shelfops.png" alt="" />
+              <span>ShelfOps</span>
+            </button>
+            <button type="button" data-hero-project="spec">
+              <img src="static/images/spec_valuation.png" alt="" />
+              <span>SPEC-NYC</span>
+            </button>
+            <button type="button" data-hero-project="aibs">
+              <img src="static/images/AIBS.png" alt="" />
+              <span>AiBS</span>
+            </button>
+          </div>
+        </div>
+        <div class="hero-portrait" aria-label="Portrait of Colby Reichenbach" tabindex="0">
           <div class="portrait-ring">
             <img src="static/images/headshot.jpg" alt="Colby Reichenbach" />
+          </div>
+          <div class="portrait-popout" aria-label="Personal details">
+            <span class="personal-card personal-card-education">UNC Chapel Hill<br /><small>B.S. Biology - Data Science minor</small></span>
+            <span class="personal-card personal-card-location">Remote and hybrid<br /><small>Open to practical systems roles</small></span>
+            <span class="personal-card personal-card-focus">Applied data systems<br /><small>Data, ML, backend, and product layers</small></span>
           </div>
         </div>
         <div class="hero-visual-card" aria-label="Role focus">
@@ -235,7 +256,7 @@
     </article>
   </div>
 
-  <script src="static/script.js?v=4.2"></script>
+  <script src="static/script.js?v=4.5"></script>
 </body>
 
 </html>

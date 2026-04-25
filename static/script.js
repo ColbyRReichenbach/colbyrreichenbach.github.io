@@ -221,6 +221,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.querySelectorAll("[data-hero-project]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openProject(button.dataset.heroProject);
+    });
+  });
+
   modal.addEventListener("click", (event) => {
     if (event.target.matches("[data-close-modal]")) closeProject();
   });
