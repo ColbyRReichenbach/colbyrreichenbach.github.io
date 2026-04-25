@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work | Colby Reichenbach</title>
+  <meta name="description" content="Project grid for Colby Reichenbach: applied data systems, analytics products, model workflows, and product engineering work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/style.css?v=5.0" />
+</head>
+<body class="work-page">
+  <div class="site-noise" aria-hidden="true"></div>
+  <nav class="top-nav page-nav" aria-label="Primary navigation">
+    <a class="back-link" href="/" aria-label="Back to home">←</a>
+    <a class="brand" href="/"><span class="brand-mark">CR</span><span>Colby</span><span class="brand-path">/ work</span></a>
+    <a class="nav-cta" href="../static/images/ColbyReichenbach_Resume_1.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
+  </nav>
+
+  <main class="work-shell">
+    <header class="page-header">
+      <p class="eyebrow">/ Work</p>
+      <h1>Project grid</h1>
+      <p>Click a card for the project readout. The grid is intentionally simple so the work carries the page.</p>
+    </header>
+
+    <section class="work-grid" aria-label="Project grid">
+      <article class="project-card size-xl" data-project="shelfops"><img src="../static/images/shelfops.png" alt="ShelfOps inventory dashboard" /><div class="project-card-caption"><span>ShelfOps</span><small>Inventory decision system</small></div></article>
+      <article class="project-card size-lg" data-project="spec"><img src="../static/images/spec_valuation.png" alt="SPEC-NYC valuation workflow" /><div class="project-card-caption"><span>SPEC-NYC</span><small>Valuation governance</small></div></article>
+      <article class="project-card size-md" data-project="aibs"><img src="../static/images/AIBS.png" alt="AiBS baseball analytics interface" /><div class="project-card-caption"><span>AiBS</span><small>Real-time sports analytics</small></div></article>
+      <article class="project-card size-md" data-project="pulse"><img src="../static/images/pulse_preview.png" alt="Pulse Tracker product interface" /><div class="project-card-caption"><span>Pulse Tracker</span><small>Coaching product infrastructure</small></div></article>
+      <article class="project-card size-lg" data-project="opportunity"><div class="project-art radar-art" aria-hidden="true"><span>Opportunity<br />Radar</span></div><div class="project-card-caption"><span>Opportunity Radar</span><small>Search workflow system</small></div></article>
+      <article class="project-card size-sm" data-project="retention"><img src="../static/images/proactive_retention_agent.png" alt="Proactive Retention Agent interface" /><div class="project-card-caption"><span>Retention Agent</span><small>Churn review queue</small></div></article>
+      <article class="project-card size-sm" data-project="masters"><img src="../static/images/masters_rewind.jpg" alt="Masters Tournament Intelligence app" /><div class="project-card-caption"><span>Masters Intelligence</span><small>Tournament analytics</small></div></article>
+      <article class="project-card size-md" data-project="draftkings"><img src="../static/images/draftkings.png" alt="DK Sentinel case review system" /><div class="project-card-caption"><span>DK Sentinel</span><small>Risk case workflow</small></div></article>
+    </section>
+  </main>
+
+  <div class="project-modal" id="project-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="modal-close" data-close-modal aria-label="Close project detail">Close</button>
+      <div class="modal-media" id="modal-media"></div>
+      <div class="modal-content">
+        <span class="slash-label" id="modal-kicker">/ System</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-summary"></p>
+        <div class="modal-meta">
+          <div><span>Problem</span><p id="modal-problem"></p></div>
+          <div><span>System</span><p id="modal-system"></p></div>
+          <div><span>Stack</span><p id="modal-stack"></p></div>
+        </div>
+        <div class="modal-links" id="modal-links"></div>
+      </div>
+    </article>
+  </div>
+  <script src="../static/script.js?v=5.0"></script>
+</body>
+</html>

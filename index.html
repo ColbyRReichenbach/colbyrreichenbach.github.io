@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Colby Reichenbach | Applied Data Systems Engineer</title>
   <meta name="description" content="Colby Reichenbach is an Applied Data Systems Engineer building data products and decision systems across pipelines, analytics, modeling workflows, APIs, evaluation, and user-facing applications." />
-  <meta name="keywords" content="Colby Reichenbach, Applied Data Systems Engineer, Data Engineering, Analytics Engineering, MLOps, Product Engineering, FastAPI, React, TypeScript, Python" />
+  <meta name="keywords" content="Applied Data Systems Engineer, Data Engineer, Analytics Engineer, MLOps, Product Data Scientist, Product Engineer, FastAPI, Next.js, React, TypeScript, MLflow, Python, Colby Reichenbach" />
   <meta name="author" content="Colby Reichenbach" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#f7f1e3" />
@@ -18,189 +18,65 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://colbyrreichenbach.github.io/static/images/headshot.jpg" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Colby Reichenbach | Applied Data Systems Engineer" />
-  <meta name="twitter:description" content="Applied data systems spanning ingestion, analytics, modeling workflows, evaluation, APIs, and user-facing applications." />
-  <meta name="twitter:image" content="https://colbyrreichenbach.github.io/static/images/headshot.jpg" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="static/style.css?v=4.6" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KRK1FSC72E"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-KRK1FSC72E");
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Colby Reichenbach",
-    "url": "https://colbyrreichenbach.github.io/",
-    "image": "https://colbyrreichenbach.github.io/static/images/headshot.jpg",
-    "email": "colbyrreichenbach@gmail.com",
-    "jobTitle": "Applied Data Systems Engineer",
-    "sameAs": [
-      "https://www.linkedin.com/in/colby-reichenbach/",
-      "https://github.com/ColbyRReichenbach",
-      "https://public.tableau.com/app/profile/colby.reichenbach/vizzes"
-    ],
-    "knowsAbout": ["Data Engineering", "Analytics Engineering", "MLOps", "Product Engineering", "Python", "SQL", "FastAPI", "React", "TypeScript"]
-  }
-  </script>
+  <link rel="stylesheet" href="static/style.css?v=5.0" />
 </head>
 
-<body>
-  <div class="cursor-orb" aria-hidden="true"></div>
+<body class="home-page">
   <div class="site-noise" aria-hidden="true"></div>
+  <div class="cursor-orb" aria-hidden="true"></div>
 
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="brand" href="#top" aria-label="Back to top">
-      <span class="brand-mark" aria-hidden="true">CR</span>
-      <span>Colby Reichenbach</span>
-      <span class="brand-path">/ Applied Data Systems Engineer</span>
-    </a>
-    <div class="nav-center" aria-label="Quick links">
-      <a href="https://github.com/ColbyRReichenbach" target="_blank" rel="noopener noreferrer">Gh</a>
-      <a href="https://www.linkedin.com/in/colby-reichenbach/" target="_blank" rel="noopener noreferrer">Ln</a>
-      <a href="mailto:colbyrreichenbach@gmail.com" aria-label="Email Colby">*</a>
+  <nav class="top-nav" aria-label="Primary navigation">
+    <a class="brand" href="/" aria-label="Home"><span class="brand-mark">CR</span><span>Colby</span></a>
+    <div class="nav-links">
+      <a href="/me/">/ Me</a>
+      <a href="/work/">/ Work</a>
     </div>
     <a class="nav-cta" href="static/images/ColbyReichenbach_Resume_1.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
   </nav>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Applied Data Systems Engineer</p>
-        <h1 id="hero-title">I build systems from messy, real-world data.</h1>
-        <p>
-          I work across pipelines, analytics, production modeling workflows, APIs, evaluation, and product interfaces. The common thread is building systems that make operational decisions clearer: inventory planning, model review, live event reporting, retention prioritization, and workflow automation.
-        </p>
+  <main class="home-scene" aria-labelledby="hero-title">
+    <div class="home-projects" aria-label="Featured project previews">
+      <button class="home-project-card card-a" type="button" data-project="shelfops">
+        <span class="flipbook"><img src="static/images/shelfops.png" alt="ShelfOps preview" /><img src="static/images/spec_valuation.png" alt="" /></span>
+        <strong>ShelfOps</strong>
+      </button>
+      <button class="home-project-card card-b" type="button" data-project="spec">
+        <span class="flipbook"><img src="static/images/spec_valuation.png" alt="SPEC-NYC preview" /><img src="static/images/Feature_Importance.png" alt="" /></span>
+        <strong>SPEC-NYC</strong>
+      </button>
+      <button class="home-project-card card-c" type="button" data-project="aibs">
+        <span class="flipbook"><img src="static/images/AIBS.png" alt="AiBS preview" /><img src="static/images/mlb_dash.jpg" alt="" /></span>
+        <strong>AiBS</strong>
+      </button>
+      <button class="home-project-card card-d" type="button" data-project="pulse">
+        <span class="flipbook"><img src="static/images/pulse_preview.png" alt="Pulse Tracker preview" /><img src="static/images/proactive_retention_agent.png" alt="" /></span>
+        <strong>Pulse</strong>
+      </button>
+      <button class="home-project-card card-e" type="button" data-project="masters">
+        <span class="flipbook"><img src="static/images/masters_rewind.jpg" alt="Masters Intelligence preview" /><img src="static/images/tableau.png" alt="" /></span>
+        <strong>Masters</strong>
+      </button>
+      <button class="home-project-card card-f" type="button" data-project="draftkings">
+        <span class="flipbook"><img src="static/images/draftkings.png" alt="DK Sentinel preview" /><img src="static/images/campaign_performance_metrics.png" alt="" /></span>
+        <strong>DK Sentinel</strong>
+      </button>
+    </div>
+
+    <section class="center-stage">
+      <a class="stage-link stage-link-me" href="/me/">/ Me</a>
+      <div class="portrait-core" tabindex="0" aria-label="Portrait hover area">
+        <img src="static/images/headshot.jpg" alt="Colby Reichenbach" />
       </div>
-      <div class="hero-visual reveal delay-1">
-        <div class="hero-work-cluster">
-          <a class="hero-work-link" href="#work" data-scramble>/ Work</a>
-          <div class="work-popout" aria-label="Featured project previews">
-            <button type="button" data-hero-project="shelfops">
-              <img src="static/images/shelfops.png" alt="" />
-              <span>ShelfOps</span>
-            </button>
-            <button type="button" data-hero-project="spec">
-              <img src="static/images/spec_valuation.png" alt="" />
-              <span>SPEC-NYC</span>
-            </button>
-            <button type="button" data-hero-project="aibs">
-              <img src="static/images/AIBS.png" alt="" />
-              <span>AiBS</span>
-            </button>
-          </div>
-        </div>
-        <div class="hero-portrait" aria-label="Portrait of Colby Reichenbach" tabindex="0">
-          <div class="portrait-ring">
-            <img src="static/images/headshot.jpg" alt="Colby Reichenbach" />
-          </div>
-          <div class="portrait-popout" aria-label="Personal details">
-            <span class="personal-card personal-card-education">UNC Chapel Hill<br /><small>B.S. Biology - Data Science minor</small></span>
-            <span class="personal-card personal-card-location">Remote and hybrid<br /><small>Open to practical systems roles</small></span>
-            <span class="personal-card personal-card-focus">Applied data systems<br /><small>Data, ML, backend, and product layers</small></span>
-          </div>
-        </div>
-        <div class="hero-visual-card" aria-label="Role focus">
-          <span>Product Engineer</span>
-          <span>Data Engineer</span>
-          <span>Analytics Engineer</span>
-          <span>MLOps</span>
-          <span>Product Data Scientist</span>
-          <span>Applied Data Systems</span>
-        </div>
-      </div>
-      <div class="hero-services reveal delay-2" aria-label="Core capabilities">
-        <span>/ Application Engineering</span>
-        <span>/ Data Engineering</span>
-        <span>/ Analytics Engineering</span>
-        <span>/ MLOps</span>
-        <span>/ Workflow Automation</span>
-      </div>
+      <a class="stage-link stage-link-work" href="/work/">/ Work</a>
     </section>
 
-    <section id="work" class="work-section" aria-labelledby="work-title">
-      <div class="work-header reveal">
-        <div>
-          <span class="slash-label">/ Work</span>
-          <h2 id="work-title">Project canvas</h2>
-          <p>Drag the canvas, filter by role, or open a project card for the full readout.</p>
-        </div>
-        <div class="view-controls" aria-label="Work view controls">
-          <button type="button" class="view-btn active" data-view="canvas" aria-pressed="true">Canvas</button>
-          <button type="button" class="view-btn" data-view="grid" aria-pressed="false">Grid</button>
-        </div>
-      </div>
-
-      <div class="filter-rail reveal delay-1" aria-label="Project filters">
-        <button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="filter-pill" data-filter="application">Application</button>
-        <button type="button" class="filter-pill" data-filter="data">Data</button>
-        <button type="button" class="filter-pill" data-filter="analytics">Analytics</button>
-        <button type="button" class="filter-pill" data-filter="mlops">MLOps</button>
-        <button type="button" class="filter-pill" data-filter="workflow">Workflow</button>
-      </div>
-
-      <div class="work-stage canvas-mode" id="work-stage">
-        <div class="canvas-board" id="canvas-board" aria-label="Interactive project canvas">
-          <article class="project-card size-xl" data-project="shelfops" data-tags="data analytics mlops workflow" style="--x: 4%; --y: 7%; --r: -2deg;">
-            <img src="static/images/shelfops.png" alt="ShelfOps inventory dashboard" loading="lazy" />
-            <div class="project-card-caption"><span>ShelfOps</span><small>Inventory decision system</small></div>
-          </article>
-          <article class="project-card size-lg" data-project="spec" data-tags="mlops analytics data" style="--x: 42%; --y: 3%; --r: 1.5deg;">
-            <img src="static/images/spec_valuation.png" alt="SPEC-NYC valuation workflow" loading="lazy" />
-            <div class="project-card-caption"><span>SPEC-NYC</span><small>Valuation governance</small></div>
-          </article>
-          <article class="project-card size-md" data-project="aibs" data-tags="analytics data application" style="--x: 72%; --y: 14%; --r: -1deg;">
-            <img src="static/images/AIBS.png" alt="AiBS baseball analytics interface" loading="lazy" />
-            <div class="project-card-caption"><span>AiBS</span><small>Real-time sports analytics</small></div>
-          </article>
-          <article class="project-card size-md" data-project="pulse" data-tags="application analytics" style="--x: 14%; --y: 44%; --r: 2deg;">
-            <img src="static/images/pulse_preview.png" alt="Pulse Tracker product interface" loading="lazy" />
-            <div class="project-card-caption"><span>Pulse Tracker</span><small>Coaching product infrastructure</small></div>
-          </article>
-          <article class="project-card size-lg" data-project="opportunity" data-tags="workflow application data" style="--x: 47%; --y: 40%; --r: -1.5deg;">
-            <div class="project-art radar-art" aria-hidden="true"><span>Opportunity<br />Radar</span></div>
-            <div class="project-card-caption"><span>Opportunity Radar</span><small>Search workflow system</small></div>
-          </article>
-          <article class="project-card size-sm" data-project="retention" data-tags="analytics mlops application" style="--x: 78%; --y: 55%; --r: 2.5deg;">
-            <img src="static/images/proactive_retention_agent.png" alt="Proactive Retention Agent interface" loading="lazy" />
-            <div class="project-card-caption"><span>Retention Agent</span><small>Churn review queue</small></div>
-          </article>
-          <article class="project-card size-sm" data-project="masters" data-tags="analytics application" style="--x: 7%; --y: 76%; --r: -2.5deg;">
-            <img src="static/images/masters_rewind.jpg" alt="Masters Tournament Intelligence app" loading="lazy" />
-            <div class="project-card-caption"><span>Masters Intelligence</span><small>Tournament analytics</small></div>
-          </article>
-          <article class="project-card size-md" data-project="draftkings" data-tags="analytics workflow application" style="--x: 58%; --y: 78%; --r: 1deg;">
-            <img src="static/images/draftkings.png" alt="DK Sentinel case review system" loading="lazy" />
-            <div class="project-card-caption"><span>DK Sentinel</span><small>Risk case workflow</small></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-section reveal" aria-labelledby="contact-title">
-      <div>
-        <span class="slash-label">/ Contact</span>
-        <h2 id="contact-title">Open to data, analytics, and product engineering roles.</h2>
-        <p>If your team needs someone who can go from messy source data to a tested product or reporting surface, send me the workflow you are trying to improve.</p>
-      </div>
-      <div class="social-orbit" aria-label="Contact links">
-        <a class="social-node node-email" href="mailto:colbyrreichenbach@gmail.com" aria-label="Email Colby"><span>@</span><small>Email</small></a>
-        <a class="social-node node-github" href="https://github.com/ColbyRReichenbach" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><span>Gh</span><small>GitHub</small></a>
-        <a class="social-node node-linkedin" href="https://www.linkedin.com/in/colby-reichenbach/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><span>Ln</span><small>LinkedIn</small></a>
-        <a class="social-node node-x" href="https://x.com/ColbyRReichenbach" target="_blank" rel="noopener noreferrer" aria-label="X profile"><span>X</span><small>X</small></a>
-        <div class="orbit-core" aria-hidden="true">CR</div>
-      </div>
+    <section class="home-copy" aria-labelledby="hero-title">
+      <p class="eyebrow">Applied Data Systems Engineer</p>
+      <h1 id="hero-title">I build systems from messy, real-world data.</h1>
+      <p>I work across pipelines, analytics, production modeling workflows, APIs, evaluation, and product interfaces. The common thread is building systems that make operational decisions clearer.</p>
     </section>
   </main>
 
@@ -223,7 +99,7 @@
     </article>
   </div>
 
-  <script src="static/script.js?v=4.6"></script>
+  <script src="static/script.js?v=5.0"></script>
 </body>
 
 </html>

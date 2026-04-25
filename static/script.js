@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     shelfops: {
       title: "ShelfOps",
       kicker: "/ Inventory Decision System",
-      image: "static/images/shelfops.png",
+      image: "/static/images/shelfops.png",
       summary: "An inventory decision system that models store, SKU, supplier, and demand data into forecasts, risk signals, reorder recommendations, and reviewable replenishment workflows.",
       problem: "Inventory work is spread across transactions, on-hand inventory, supplier rules, receiving issues, reorder policies, promotions, and exception events.",
       system: "Async FastAPI backend, PostgreSQL and TimescaleDB persistence, Redis caching, Celery workers, Kafka-compatible ingestion patterns, React operations dashboard, and governance checks around forecasting workflows.",
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     spec: {
       title: "SPEC-NYC",
       kicker: "/ Automated Valuation Workflow",
-      image: "static/images/spec_valuation.png",
+      image: "/static/images/spec_valuation.png",
       summary: "A production-style valuation workflow on NYC property transactions with validation, explainability, segment scorecards, model comparison, and release governance.",
       problem: "Valuation work cannot stop at one aggregate model metric; reviewers need to know where performance holds, where it fails, and what evidence supports promotion.",
       system: "Raw data ingestion, Pandera contracts, XGBoost training, Optuna tuning, MLflow tracking, SHAP artifacts, champion-challenger comparison, FastAPI and Streamlit inspection surfaces.",
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     aibs: {
       title: "AiBS",
       kicker: "/ Real-Time Sports Analytics",
-      image: "static/images/AIBS.png",
+      image: "/static/images/AIBS.png",
       summary: "A real-time baseball analytics product that normalizes ABS challenge events into warehouse tables, reporting views, editorial outputs, and interactive analysis.",
       problem: "ABS challenge events create analytical signals that are hard to inspect from isolated game events or static box scores.",
       system: "Next.js and TypeScript application surfaces, PostgreSQL serving data, Python ETL, warehouse-to-serving publishing, SQL-first analytical views, auth, publishing, comments, and release checks.",
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pulse: {
       title: "Pulse Tracker",
       kicker: "/ Multi-Tenant Coaching Platform",
-      image: "static/images/pulse_preview.png",
+      image: "/static/images/pulse_preview.png",
       summary: "A coaching application with authenticated user data, Supabase RLS, rate limiting, request routing, safety checks, telemetry, and tested product behavior.",
       problem: "Generated coaching features need user context, data isolation, safe request handling, rate limits, and observability to be useful in practice.",
       system: "Next.js product interface, Supabase authentication and RLS, context routing, Upstash Redis rate limiting, Sentry monitoring, Vercel observability, and tested workout, analytics, profile, settings, onboarding, and admin surfaces.",
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     retention: {
       title: "Proactive Retention Agent",
       kicker: "/ Churn Risk Decision Workflow",
-      image: "static/images/proactive_retention_agent.png",
+      image: "/static/images/proactive_retention_agent.png",
       summary: "A retention decision workflow that combines churn risk, complaint context, sentiment signals, and customer value into a ranked analyst queue.",
       problem: "A churn score alone does not tell a team what to do next; retention workflows need prioritization, business logic, and complaint context.",
       system: "XGBoost churn model served through FastAPI, Dockerized API layer, complaint theme and sentiment classification, priority logic, and Streamlit dashboard with transparent inspection paths.",
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     masters: {
       title: "Masters Tournament Intelligence",
       kicker: "/ Interactive Tournament Analytics",
-      image: "static/images/masters_rewind.jpg",
+      image: "/static/images/masters_rewind.jpg",
       summary: "An interactive sports analytics app for scorecards, player views, leaderboard movement, and round-by-round tournament exploration.",
       problem: "Tournament coverage often collapses to raw scores and a leaderboard, leaving course context and round movement hard to inspect.",
       system: "Vite and React application, TypeScript pipeline scripts, generated JSON artifacts, scorecard validation, course-data validation, Recharts visualizations, Tailwind styling, and Vercel deployment configuration.",
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     draftkings: {
       title: "DK Sentinel",
       kicker: "/ Responsible Gaming Case Review",
-      image: "static/images/draftkings.png",
+      image: "/static/images/draftkings.png",
       summary: "A responsible-gaming analytics project centered on risk-signal modeling, evidence tracking, case lifecycle management, and analyst review workflow.",
       problem: "Responsible-gaming analysts need deterministic checks, evidence inspection, case history, and state-specific compliance context.",
       system: "dbt-style transformation layer, DuckDB and Snowflake-style modeling, FastAPI backend, read-only SQL guardrails, React case queue, analyst notes, assisted review support, and manager-level throughput reporting.",
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const board = document.getElementById("canvas-board");
   const viewButtons = document.querySelectorAll("[data-view]");
   const filterButtons = document.querySelectorAll("[data-filter]");
-  const cards = document.querySelectorAll(".project-card");
+  const cards = document.querySelectorAll(".project-card, .home-project-card");
   const modal = document.getElementById("project-modal");
   const modalMedia = document.getElementById("modal-media");
   const modalTitle = document.getElementById("modal-title");
@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function setView(view) {
+    if (!stage) return;
     stage.classList.toggle("grid-mode", view === "grid");
     stage.classList.toggle("canvas-mode", view === "canvas");
     viewButtons.forEach((button) => {
@@ -161,19 +162,19 @@ document.addEventListener("DOMContentLoaded", () => {
   viewButtons.forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
   filterButtons.forEach((button) => button.addEventListener("click", () => setFilter(button.dataset.filter)));
 
-  stage.addEventListener("pointerdown", (event) => {
+  if (stage && board) stage.addEventListener("pointerdown", (event) => {
     if (stage.classList.contains("grid-mode") || event.target.closest(".project-card")) return;
     drag = { startX: event.clientX, startY: event.clientY, baseX: pan.x, baseY: pan.y };
     stage.classList.add("dragging");
     stage.setPointerCapture(event.pointerId);
   });
-  stage.addEventListener("pointermove", (event) => {
+  if (stage && board) stage.addEventListener("pointermove", (event) => {
     if (!drag) return;
     pan = { x: drag.baseX + event.clientX - drag.startX, y: drag.baseY + event.clientY - drag.startY };
     board.style.setProperty("--pan-x", `${pan.x}px`);
     board.style.setProperty("--pan-y", `${pan.y}px`);
   });
-  stage.addEventListener("pointerup", (event) => {
+  if (stage && board) stage.addEventListener("pointerup", (event) => {
     if (!drag) return;
     drag = null;
     stage.classList.remove("dragging");
@@ -182,7 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openProject(projectId) {
     const project = projects[projectId];
-    if (!project) return;
+    if (!project || !modal) return;
+    if (!modalKicker || !modalTitle || !modalSummary || !modalProblem || !modalSystem || !modalStack || !modalMedia || !modalLinks) return;
     modalKicker.textContent = project.kicker;
     modalTitle.textContent = project.title;
     modalSummary.textContent = project.summary;
@@ -228,10 +230,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  modal.addEventListener("click", (event) => {
+  if (modal) modal.addEventListener("click", (event) => {
     if (event.target.matches("[data-close-modal]")) closeProject();
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !modal.hidden) closeProject();
+    if (event.key === "Escape" && modal && !modal.hidden) closeProject();
   });
 });
