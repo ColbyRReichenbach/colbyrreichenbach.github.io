@@ -127,7 +127,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .center-stage {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 39%;
   z-index: 6;
   display: flex;
   align-items: center;
@@ -152,6 +152,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   font-family: var(--serif);
   font-size: clamp(2.4rem, 5vw, 4rem);
   color: var(--blue-deep);
+  white-space: nowrap;
   transition: color 180ms ease, transform 220ms ease;
 }
 .stage-link:hover { color: var(--blue); transform: translateY(-4px); }
@@ -164,21 +165,23 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 .home-project-card {
   position: absolute;
-  width: clamp(190px, 18vw, 320px);
-  height: clamp(128px, 12vw, 210px);
+  width: clamp(170px, 14vw, 260px);
+  height: clamp(112px, 9.5vw, 172px);
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(19,41,75,.12);
   background: var(--panel-strong);
   box-shadow: 0 24px 70px rgba(19,41,75,.16);
   opacity: 0;
-  pointer-events: auto;
+  pointer-events: none;
   transform: translate3d(var(--start-x, 0), var(--start-y, 0), 0) rotate(var(--r, 0deg)) scale(.7);
   transition: opacity 260ms ease, transform 420ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
 }
 .home-scene:hover .home-project-card,
-.home-scene:focus-within .home-project-card {
+.home-scene:has(.portrait-core:focus) .home-project-card,
+.home-scene:has(.stage-link-work:focus) .home-project-card {
   opacity: 1;
+  pointer-events: auto;
   transform: translate3d(0, 0, 0) rotate(var(--r, 0deg)) scale(1);
 }
 .home-project-card:hover,
@@ -212,12 +215,11 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .flipbook img:nth-child(2) { opacity: 0; transform: translateX(18px) scale(1.04); }
 .home-project-card:hover .flipbook img:nth-child(1) { opacity: 0; transform: translateX(-18px) scale(1.04); }
 .home-project-card:hover .flipbook img:nth-child(2) { opacity: 1; transform: translateX(0) scale(1); }
-.card-a { --r: -2deg; --start-x: 38vw; --start-y: 24vh; left: 7%; top: 19%; }
-.card-b { --r: 2deg; --start-x: 8vw; --start-y: 28vh; left: 39%; top: 13%; }
-.card-c { --r: -1deg; --start-x: -18vw; --start-y: 24vh; right: 7%; top: 23%; }
-.card-d { --r: 1.5deg; --start-x: 20vw; --start-y: -12vh; left: 18%; bottom: 13%; }
-.card-e { --r: -2.5deg; --start-x: -2vw; --start-y: -20vh; left: 44%; bottom: 7%; }
-.card-f { --r: 2deg; --start-x: -24vw; --start-y: -10vh; right: 7%; bottom: 12%; }
+.card-a { --r: -2deg; --start-x: 34vw; --start-y: 18vh; left: 7%; top: 24%; }
+.card-b { --r: 2deg; --start-x: 4vw; --start-y: 22vh; left: 40%; top: 16%; }
+.card-c { --r: -1deg; --start-x: -20vw; --start-y: 18vh; right: 7%; top: 28%; }
+.card-d, .card-f { display: none; }
+.card-e { --r: -2.5deg; --start-x: -2vw; --start-y: -14vh; left: 45%; top: 58%; }
 
 .home-copy {
   position: absolute;
@@ -226,9 +228,10 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   bottom: 30px;
   z-index: 7;
   display: grid;
-  grid-template-columns: minmax(320px, 680px) minmax(260px, 460px);
+  grid-template-columns: minmax(320px, 620px) minmax(260px, 460px);
   gap: 40px;
   align-items: end;
+  pointer-events: none;
 }
 .eyebrow, .slash-label {
   display: inline-flex;
@@ -244,8 +247,8 @@ h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.035em; l
 .home-copy h1 {
   grid-column: 1;
   grid-row: 2;
-  max-width: 760px;
-  font-size: clamp(3.2rem, 6.6vw, 7.2rem);
+  max-width: 620px;
+  font-size: clamp(3rem, 5.1vw, 5.8rem);
 }
 .home-copy p:last-child {
   grid-column: 2;
