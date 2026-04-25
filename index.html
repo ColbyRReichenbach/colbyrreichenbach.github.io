@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="static/style.css?v=4.5" />
+  <link rel="stylesheet" href="static/style.css?v=4.6" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KRK1FSC72E"></script>
   <script>
@@ -128,21 +128,12 @@
       </div>
     </section>
 
-    <section class="intro-panel reveal" aria-label="Portfolio positioning">
-      <div>
-        <span class="slash-label">/ Flagship Systems</span>
-        <h2>Projects organized around data model, decision logic, and delivery surface.</h2>
-      </div>
-      <p>
-        These are the projects that best show how I work. I am usually most interested in the data model, the decision logic, and the interface where the result gets used.
-      </p>
-    </section>
-
     <section id="work" class="work-section" aria-labelledby="work-title">
       <div class="work-header reveal">
         <div>
           <span class="slash-label">/ Work</span>
-          <h2 id="work-title">Flagship and supporting systems</h2>
+          <h2 id="work-title">Project canvas</h2>
+          <p>Drag the canvas, filter by role, or open a project card for the full readout.</p>
         </div>
         <div class="view-controls" aria-label="Work view controls">
           <button type="button" class="view-btn active" data-view="canvas" aria-pressed="true">Canvas</button>
@@ -158,8 +149,6 @@
         <button type="button" class="filter-pill" data-filter="mlops">MLOps</button>
         <button type="button" class="filter-pill" data-filter="workflow">Workflow</button>
       </div>
-
-      <p class="canvas-instruction reveal delay-2">Canvas mode supports dragging on desktop. Click any card for a deeper project readout.</p>
 
       <div class="work-stage canvas-mode" id="work-stage">
         <div class="canvas-board" id="canvas-board" aria-label="Interactive project canvas">
@@ -199,40 +188,18 @@
       </div>
     </section>
 
-    <section class="process-section reveal" aria-labelledby="process-title">
-      <span class="slash-label">/ Operating Model</span>
-      <h2 id="process-title">Crossing the layers between data, ML, backend, and product.</h2>
-      <div class="process-grid">
-        <article><span>01</span><h3>Learn the workflow</h3><p>I do not treat domains as interchangeable. The technical patterns transfer, but the constraints do not.</p></article>
-        <article><span>02</span><h3>Build the system</h3><p>Most of my work sits between data engineering, analytics engineering, MLOps, product data science, and product development.</p></article>
-        <article><span>03</span><h3>Make it defensible</h3><p>I care about whether a project holds up under scrutiny: tests, typed interfaces, source-of-truth data, evaluation, and deployment checks.</p></article>
-      </div>
-    </section>
-
-    <section id="about" class="education-section reveal" aria-labelledby="education-title">
-      <div>
-        <span class="slash-label">/ Education</span>
-        <h2 id="education-title">Education</h2>
-      </div>
-      <div class="education-card">
-        <img src="static/images/unc_logo_clean.png" alt="University of North Carolina at Chapel Hill logo" />
-        <div>
-          <strong>University of North Carolina at Chapel Hill</strong>
-          <span>B.S. Biology - Data Science minor</span>
-        </div>
-      </div>
-    </section>
-
     <section id="contact" class="contact-section reveal" aria-labelledby="contact-title">
       <div>
         <span class="slash-label">/ Contact</span>
         <h2 id="contact-title">Open to data, analytics, and product engineering roles.</h2>
         <p>If your team needs someone who can go from messy source data to a tested product or reporting surface, send me the workflow you are trying to improve.</p>
       </div>
-      <div class="contact-actions">
-        <a href="mailto:colbyrreichenbach@gmail.com">Email</a>
-        <a href="https://github.com/ColbyRReichenbach" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/colby-reichenbach/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <div class="social-orbit" aria-label="Contact links">
+        <a class="social-node node-email" href="mailto:colbyrreichenbach@gmail.com" aria-label="Email Colby"><span>@</span><small>Email</small></a>
+        <a class="social-node node-github" href="https://github.com/ColbyRReichenbach" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><span>Gh</span><small>GitHub</small></a>
+        <a class="social-node node-linkedin" href="https://www.linkedin.com/in/colby-reichenbach/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><span>Ln</span><small>LinkedIn</small></a>
+        <a class="social-node node-x" href="https://x.com/ColbyRReichenbach" target="_blank" rel="noopener noreferrer" aria-label="X profile"><span>X</span><small>X</small></a>
+        <div class="orbit-core" aria-hidden="true">CR</div>
       </div>
     </section>
   </main>
@@ -256,7 +223,7 @@
     </article>
   </div>
 
-  <script src="static/script.js?v=4.5"></script>
+  <script src="static/script.js?v=4.6"></script>
 </body>
 
 </html>
