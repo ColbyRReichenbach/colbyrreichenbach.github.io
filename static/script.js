@@ -48,12 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     opportunity: {
       title: "Opportunity Radar",
-      kicker: "/ Job, Company, and Contact Workflow System",
+      kicker: "/ Opportunity Intelligence Workflow",
       image: null,
-      summary: "A workflow system for structuring jobs, companies, contacts, emails, interviews, ATS signals, resume variants, and relationship context into an actionable search pipeline.",
-      problem: "A serious search pipeline is fragmented across tabs, spreadsheets, inboxes, calendars, ATS systems, and memory.",
-      system: "FastAPI backend, SQLAlchemy models, Alembic migrations, Google OAuth, Gmail and calendar sync, Celery workers, enrichment services, React and Vite dashboard, and a Chrome extension.",
-      stack: "Python, FastAPI, SQLAlchemy, Alembic, Celery, Redis, Google APIs, React, Vite, Chrome Extension",
+      summary: "A research workflow that turns applications, company visits, and company tech signals into scored opportunity signals, briefs, and recommended next actions.",
+      problem: "A serious search pipeline is fragmented across applications, company research, repeated career-page visits, tech-stack clues, outreach ideas, and follow-up timing.",
+      system: "Research profiles define roles, domains, companies, source types, cadence, and score thresholds. A FastAPI pipeline collects internal sources, dedupes raw items, extracts signals, scores them across fit, company interest, recency, buildability, outreach strength, portfolio relevance, and source confidence, then generates briefs and recommended actions with strict action-state handling.",
+      stack: "Python, FastAPI, SQLAlchemy, Alembic, PostgreSQL, Celery, React, TypeScript, Vite, Playwright",
       links: []
     },
     retention: {
