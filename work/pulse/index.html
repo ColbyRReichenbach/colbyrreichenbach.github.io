@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pulse Case Study | Colby Reichenbach</title>
+  <meta name="description" content="Pulse case study: a guarded AI fitness coach and training analytics app with Next.js, Supabase, OpenAI, privacy controls, prompt-injection checks, and product analytics." />
+  <link rel="canonical" href="https://colbyrreichenbach.github.io/work/pulse/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../static/style.css?v=6.0" />
+</head>
+<body class="case-page">
+  <div class="site-noise" aria-hidden="true"></div>
+  <nav class="top-nav page-nav" aria-label="Primary navigation">
+    <a class="back-link" href="/work/" aria-label="Back to work">&larr;</a>
+    <a class="brand" href="/"><span class="brand-mark">CR</span><span>Colby</span><span class="brand-path">/ pulse</span></a>
+    <a class="nav-cta" href="../../static/Colby_Reichenbach_Resume.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
+  </nav>
+  <main class="case-shell">
+    <section class="case-hero">
+      <div>
+        <p class="eyebrow">/ Guarded AI Fitness Coach</p>
+        <h1>Pulse</h1>
+        <p>A Next.js/Supabase training platform with workout logging, biometrics, PR tracking, training analytics, user-data export, and a guarded AI coach named ECHO-P1.</p>
+        <div class="case-links">
+          <a href="https://github.com/ColbyRReichenbach/workout-web" target="_blank" rel="noopener noreferrer">Repo</a>
+          <a href="https://pulse-workout.vercel.app/" target="_blank" rel="noopener noreferrer">Live</a>
+          <a href="/work/">All work</a>
+        </div>
+      </div>
+      <div class="case-visual"><img src="../../static/images/pulse_preview.png" alt="Pulse guarded AI coaching interface" /></div>
+    </section>
+    <section class="case-grid">
+      <article class="case-section">
+        <h2>Problem</h2>
+        <p>An AI coaching feature cannot just generate text. It needs user context, data boundaries, validation, safety handling, rate limits, observability, and product workflows around the response.</p>
+      </article>
+      <article class="case-section">
+        <h2>System</h2>
+        <p>Next.js app with Supabase-backed auth/data flows, workout and analytics surfaces, AI chat route with request validation, prompt-injection detection, moderation, sensitive-topic handling, semantic fitness intent routing, privacy mode, user-data tools, output validation, token/cost logging, and AI interaction records.</p>
+      </article>
+      <article class="case-section">
+        <h2>Evidence</h2>
+        <div class="evidence-chips"><span>Prompt-injection checks</span><span>Privacy mode</span><span>Token/cost logs</span></div>
+      </article>
+      <article class="case-section full">
+        <h2>Stack</h2>
+        <p>Next.js, TypeScript, Supabase, OpenAI API, Zod, Upstash Redis, Sentry, Vitest, Playwright, Vercel.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

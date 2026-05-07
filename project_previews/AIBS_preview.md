@@ -1,65 +1,22 @@
-# AiBS
+# AiBS / ABS Observatory
 
-### Real-Time Sports Analytics Platform
+### Baseball Analytics & AI Data Product
 
----
-
-I built AiBS as a real-time sports analytics application around MLB ABS challenge data. The goal was to turn live challenge events into normalized entities, reporting views, article outputs, and interactive reporting for game, team, and umpire analysis.
-
----
+AiBS is a warehouse-backed baseball analytics platform for Automated Ball-Strike challenge analysis, game/team/umpire context, challenge value, leaderboards, reports, editorial/community features, and AI-assisted interpretation.
 
 ## Problem
 
-ABS challenge events create a new analytical layer: challenge timing, overturn patterns, umpire variance, team behavior, location context, and game-state consequence. Those signals are hard to reason about from isolated events or static box scores. I built AiBS to organize them into a reporting system someone could actually use.
-
----
-
-## Data and workflow
-
-AiBS works with ABS challenge events, game metadata, enrichment data, standings snapshots, and warehouse and serving tables.
-
-The workflow is:
-
-```text
-live events
--> normalized entities
--> analytical views
--> game, team, and umpire reporting
--> editorial output and product UX
--> text summaries where useful
-```
-
----
+ABS challenge events create analytical signals around challenge timing, overturn probability, team and umpire behavior, pitch state, and game consequence. Those signals are hard to inspect from isolated event feeds or static box scores.
 
 ## System
 
-The project includes:
-
-- Next.js, React, and TypeScript application surfaces.
-- PostgreSQL serving and product database.
-- Python ETL for ingestion and enrichment.
-- Warehouse-to-serving publishing and reconciliation patterns.
-- SQL-first analytical views for reporting.
-- text summaries tied to baseball context.
-- Clerk authentication.
-- Publishing, commenting, moderation, and public-facing content features.
-
----
-
-## Evaluation and reliability
-
-I added Vitest, Playwright, Python unittest coverage, service health checks, database smoke checks, warehouse-serving reconciliation scripts, release smoke tests, and telemetry.
-
-What I would want someone to take away from this project is the system pattern: live events, normalized data, reporting views, user-facing application surfaces, and quality checks across the full path.
-
----
-
-## Best fit
-
-Analytics Engineering · Real-Time Data Systems · Application Engineering · Data Product Engineering
-
----
+- Python ETL.
+- PostgreSQL schemas and mart views.
+- Next.js/React/TypeScript product surfaces.
+- Polling, backfill, validation, sample data, and warehouse-serving reconciliation scripts.
+- Challenge classification, pitch timelines, modeled overturn probability, daily team/umpire summaries, expectancy baselines, decision value, impact metrics, and editorial summaries.
+- AI-assisted interpretation with bounded tools, policy checks, ownership controls, conversation persistence, sanitized tool results, rate limits, usage/cost logging, safety events, and admin review surfaces.
 
 ## Stack
 
-Next.js · React · TypeScript · PostgreSQL · Python ETL · Clerk · Vitest · Playwright
+Python, PostgreSQL, SQL, Next.js, React, TypeScript, ETL, OpenAI API, Vitest, Playwright.

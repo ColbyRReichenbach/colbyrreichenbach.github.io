@@ -1,55 +1,25 @@
 # SPEC-NYC
 
-### Automated Valuation Workflow
+### Real Estate Valuation ML Governance Pipeline
 
----
-
-I built SPEC-NYC as a production-style valuation workflow on NYC property transaction data. I wanted to focus on the parts of modeling work that matter after training: validation, explainability, segment-level scorecards, promotion checks, and release governance.
-
----
+SPEC-NYC is a Python/TypeScript valuation-modeling and governance pipeline for NYC residential property data. The project focuses on the evidence needed around a model: ETL, feature engineering, evaluation, explainability, monitoring, retrain policy, and release gates.
 
 ## Problem
 
-Valuation work cannot stop at a single aggregate metric. I wanted a workflow that shows where the model performs well, where it fails, what changed between versions, and what evidence supports promotion or rollback.
-
----
-
-## Data and workflow
-
-I used NYC Open Data property transaction records and derived feature and segment datasets. The workflow moves from ingestion and validation to model training, scorecard generation, governance review, and release readiness.
-
----
+Valuation modeling cannot stop at one aggregate metric. Reviewers need to know where performance holds, where it fails, what changed between versions, and what evidence supports retraining or release.
 
 ## System
 
-SPEC-NYC includes:
-
-- Raw data ingestion with retries and caching patterns.
-- Pandera data contracts.
-- XGBoost training with Optuna tuning.
-- MLflow experiment tracking.
+- Source connectors and canonical data contracts.
+- ETL with identity, deduplication, segmentation, temporal history, feature engineering, imputation, and non-leaky proxy feature paths.
+- Time-based train/test split and XGBoost evaluation.
 - SHAP explainability artifacts.
-- Champion-challenger comparison.
-- Human approval gates for promotion.
-- Segment-level scorecards.
-- FastAPI and Streamlit inspection surfaces.
-
----
-
-## Evaluation and reliability
-
-I evaluate model performance with PPE10, MdAPE, and R², then break those metrics out by segment so weak slices do not disappear inside acceptable aggregate metrics.
-
-I also track experiments with hypothesis IDs, dataset versions, feature-set versions, and pass-fail criteria so promotion decisions are reproducible.
-
----
-
-## Best fit
-
-MLOps · ML Engineering · Product Data Science · Model Evaluation · Data Quality
-
----
+- Drift and performance monitoring.
+- Retrain-policy outputs.
+- Champion/challenger and release-gate code.
+- Streamlit governance dashboard.
+- Next.js API/demo surfaces with Zod contracts and bounded copilot patterns.
 
 ## Stack
 
-Python · XGBoost · Optuna · MLflow · SHAP · Pandera · FastAPI · Streamlit · Docker · NYC Open Data
+Python, Pandas, XGBoost, SHAP, Optuna, MLflow-style artifacts, Pandera, Streamlit, Next.js, TypeScript, Zod, PostgreSQL.

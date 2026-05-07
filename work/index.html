@@ -4,57 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work | Colby Reichenbach</title>
-  <meta name="description" content="Project grid for Colby Reichenbach: applied data systems, analytics products, model workflows, and product engineering work." />
+  <meta name="description" content="AI, ML, analytics, and data product case studies from Colby Reichenbach: APIs, pipelines, model evidence, LLM workflows, dashboards, and decision systems." />
+  <link rel="canonical" href="https://colbyrreichenbach.github.io/work/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../static/style.css?v=5.1" />
+  <link rel="stylesheet" href="../static/style.css?v=6.0" />
 </head>
 <body class="work-page">
   <div class="site-noise" aria-hidden="true"></div>
   <nav class="top-nav page-nav" aria-label="Primary navigation">
-    <a class="back-link" href="/" aria-label="Back to home">←</a>
+    <a class="back-link" href="/" aria-label="Back to home">&larr;</a>
     <a class="brand" href="/"><span class="brand-mark">CR</span><span>Colby</span><span class="brand-path">/ work</span></a>
-    <a class="nav-cta" href="../static/images/ColbyReichenbach_Resume_1.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
+    <a class="nav-cta" href="../static/Colby_Reichenbach_Resume.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
   </nav>
 
   <main class="work-shell">
     <header class="page-header">
       <p class="eyebrow">/ Work</p>
-      <h1>Project grid</h1>
-      <p>Use the filters to find projects that align with your interests, then click any card for the project readout.</p>
+      <h1>Systems that turn data and AI into decisions.</h1>
+      <p>Each project below is a productized system: APIs, pipelines, models or LLM workflows, analytics layers, and interfaces built around real decision points.</p>
     </header>
 
     <div class="filter-rail" aria-label="Project filters">
       <button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All</button>
-      <button type="button" class="filter-pill" data-filter="application" aria-pressed="false">Product engineering</button>
-      <button type="button" class="filter-pill" data-filter="data" aria-pressed="false">Data engineering</button>
-      <button type="button" class="filter-pill" data-filter="analytics" aria-pressed="false">Analytics</button>
-      <button type="button" class="filter-pill" data-filter="mlops" aria-pressed="false">MLOps</button>
-      <button type="button" class="filter-pill" data-filter="workflow" aria-pressed="false">Workflow systems</button>
+      <button type="button" class="filter-pill" data-filter="ai" aria-pressed="false">Applied AI</button>
+      <button type="button" class="filter-pill" data-filter="ml" aria-pressed="false">ML / MLOps</button>
+      <button type="button" class="filter-pill" data-filter="data" aria-pressed="false">Data Engineering</button>
+      <button type="button" class="filter-pill" data-filter="analytics" aria-pressed="false">Analytics Engineering</button>
+      <button type="button" class="filter-pill" data-filter="product" aria-pressed="false">Product Systems</button>
     </div>
 
-    <section class="work-grid" aria-label="Project grid">
-      <article class="project-card size-xl" data-project="shelfops" data-tags="data analytics mlops workflow"><img src="../static/images/shelfops.png" alt="ShelfOps inventory dashboard" /><div class="project-card-caption"><span>ShelfOps</span><small>Inventory decision system</small></div><p class="project-card-description">Forecasting and replenishment workflow for inventory teams.</p></article>
-      <article class="project-card size-lg" data-project="spec" data-tags="mlops analytics data"><img src="../static/images/spec_valuation.png" alt="SPEC-NYC valuation workflow" /><div class="project-card-caption"><span>SPEC-NYC</span><small>Valuation governance</small></div><p class="project-card-description">Model governance for property valuation and explainability.</p></article>
-      <article class="project-card size-md" data-project="aibs" data-tags="application data analytics"><img src="../static/images/AIBS.png" alt="AiBS baseball analytics interface" /><div class="project-card-caption"><span>AiBS</span><small>Real-time sports analytics</small></div><p class="project-card-description">Live ABS challenge analytics, reporting, and editorial surfaces.</p></article>
-      <article class="project-card size-md" data-project="pulse" data-tags="application analytics"><img src="../static/images/pulse_preview.png" alt="Pulse Tracker product interface" /><div class="project-card-caption"><span>Pulse Tracker</span><small>Coaching product infrastructure</small></div><p class="project-card-description">Authenticated coaching product with safe AI routing and telemetry.</p></article>
-      <article class="project-card size-lg" data-project="opportunity" data-tags="workflow application data"><div class="project-art radar-art" aria-hidden="true"><span>Opportunity<br />Radar</span></div><div class="project-card-caption"><span>Opportunity Radar</span><small>Opportunity intelligence</small></div><p class="project-card-description">Scored signals, briefs, and next actions from job-search source data.</p></article>
-      <article class="project-card size-sm" data-project="retention" data-tags="analytics mlops application"><img src="../static/images/proactive_retention_agent.png" alt="Proactive Retention Agent interface" /><div class="project-card-caption"><span>Retention Agent</span><small>Churn review queue</small></div><p class="project-card-description">Churn-risk queue combining model score, sentiment, and customer value.</p></article>
-      <article class="project-card size-sm" data-project="masters" data-tags="analytics application"><img src="../static/images/masters_rewind.jpg" alt="Masters Tournament Intelligence app" /><div class="project-card-caption"><span>Masters Intelligence</span><small>Tournament analytics</small></div><p class="project-card-description">Interactive tournament analytics and leaderboard exploration.</p></article>
-      <article class="project-card size-md" data-project="draftkings" data-tags="analytics workflow application"><img src="../static/images/draftkings.png" alt="DK Sentinel case review system" /><div class="project-card-caption"><span>DK Sentinel</span><small>Risk case workflow</small></div><p class="project-card-description">Responsible-gaming case workflow with risk evidence and review states.</p></article>
-    </section>
+    <section class="work-grid" data-render-work-grid aria-label="Project grid"></section>
   </main>
 
   <div class="project-modal" id="project-modal" hidden>
     <div class="modal-backdrop" data-close-modal></div>
-    <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-summary">
       <button type="button" class="modal-close" data-close-modal aria-label="Close project detail">Close</button>
       <div class="modal-media" id="modal-media"></div>
       <div class="modal-content">
         <span class="slash-label" id="modal-kicker">/ System</span>
         <h2 id="modal-title"></h2>
         <p id="modal-summary"></p>
+        <div class="evidence-chips" id="modal-evidence" aria-label="Project evidence"></div>
         <div class="modal-meta">
           <div><span>Problem</span><p id="modal-problem"></p></div>
           <div><span>System</span><p id="modal-system"></p></div>
@@ -64,6 +57,7 @@
       </div>
     </article>
   </div>
-  <script src="../static/script.js?v=5.0"></script>
+  <script src="../static/projects.js?v=6.0"></script>
+  <script src="../static/script.js?v=6.0"></script>
 </body>
 </html>

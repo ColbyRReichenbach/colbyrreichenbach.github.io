@@ -1,54 +1,20 @@
-# Pulse Tracker
+# Pulse
 
-### Multi-Tenant Coaching Platform
+### Guarded AI Fitness Coach & Training Analytics App
 
----
-
-I built Pulse Tracker as a coaching application for hybrid athletes. What I wanted to show here was the product and systems work required to make a generated-response feature usable in practice: authenticated context, user-level data isolation, rate limiting, safety checks, telemetry, and tested application behavior.
-
----
+Pulse is a Next.js/Supabase training platform with workout logging, biometrics, PR tracking, phase-specific analytics, user-data export, and a guarded AI coach named ECHO-P1.
 
 ## Problem
 
-A coaching application cannot just return a generated answer. It has to know which user it is serving, access the right context, protect that user's data, constrain unsafe or irrelevant outputs, and stay observable when something breaks.
-
----
-
-## Data and workflow
-
-Pulse works with user-entered workout logs, bodyweight data, benchmarks, preferences, profile settings, training history, and coaching requests. The workflow connects workout tracking, performance analytics, and user-specific coaching.
-
----
+An AI coaching product cannot just return a generated answer. It needs user context, validation, data boundaries, rate limits, safety handling, and observability around the response.
 
 ## System
 
-Pulse includes:
-
-- Next.js and TypeScript product interface.
-- Supabase authentication and Row Level Security patterns.
-- generated response workflow.
-- Context routing and response handling.
-- Upstash Redis rate limiting.
-- Security-aware request handling.
-- Sentry monitoring and Vercel observability.
-- Workout, analytics, profile, settings, onboarding, and admin surfaces.
-
----
-
-## Evaluation and reliability
-
-I added Vitest unit and integration tests, Playwright end-to-end tests, request and security tests, auth checks, health checks, validation tests, middleware tests, and query analytics.
-
-The part I care most about in this project is the application infrastructure around the generated response: authentication, context, safety, observability, and test coverage.
-
----
-
-## Best fit
-
-Application Engineering · Full-Stack Product · Product Analytics · User Systems
-
----
+- Next.js and TypeScript product surfaces for dashboard, workouts, analytics, profile, settings, onboarding, admin AI coach, and guest demo paths.
+- Supabase-backed auth and data flows.
+- AI chat route with request validation, prompt-injection detection, moderation, sensitive-topic handling, semantic fitness intent routing, privacy mode, conditional user-data tools, streaming response handling, output validation, token/cost logging, and AI interaction records.
+- Vitest and Playwright coverage for auth, validation, middleware, guardrails, chat behavior, and workout flows.
 
 ## Stack
 
-Next.js · TypeScript · Supabase · Upstash Redis · Sentry · Vitest · Playwright · Vercel
+Next.js, TypeScript, Supabase, OpenAI API, Zod, Upstash Redis, Sentry, Vitest, Playwright, Vercel.

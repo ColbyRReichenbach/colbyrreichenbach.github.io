@@ -1,100 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const projects = {
-    shelfops: {
-      title: "ShelfOps",
-      kicker: "/ Inventory Decision System",
-      image: "/static/images/shelfops.png",
-      summary: "An inventory decision system that models store, SKU, supplier, and demand data into forecasts, risk signals, reorder recommendations, and reviewable replenishment workflows.",
-      problem: "Inventory work is spread across transactions, on-hand inventory, supplier rules, receiving issues, reorder policies, promotions, and exception events.",
-      system: "Async FastAPI backend, PostgreSQL and TimescaleDB persistence, Redis caching, Celery workers, Kafka-compatible ingestion patterns, React operations dashboard, and governance checks around forecasting workflows.",
-      stack: "Python, FastAPI, SQLAlchemy, PostgreSQL, TimescaleDB, Redis, Celery, React, TypeScript, Docker",
-      links: [{ label: "Repo", href: "https://github.com/ColbyRReichenbach/shelfops" }]
-    },
-    spec: {
-      title: "SPEC-NYC",
-      kicker: "/ Automated Valuation Workflow",
-      image: "/static/images/spec_valuation.png",
-      summary: "A production-style valuation workflow on NYC property transactions with validation, explainability, segment scorecards, model comparison, and release governance.",
-      problem: "Valuation work cannot stop at one aggregate model metric; reviewers need to know where performance holds, where it fails, and what evidence supports promotion.",
-      system: "Raw data ingestion, Pandera contracts, XGBoost training, Optuna tuning, MLflow tracking, SHAP artifacts, champion-challenger comparison, FastAPI and Streamlit inspection surfaces.",
-      stack: "Python, XGBoost, Optuna, MLflow, SHAP, Pandera, FastAPI, Streamlit, Docker",
-      links: [{ label: "Repo", href: "https://github.com/ColbyRReichenbach/SPEC-NYC" }]
-    },
-    aibs: {
-      title: "AiBS",
-      kicker: "/ Real-Time Sports Analytics",
-      image: "/static/images/AIBS.png",
-      summary: "A real-time baseball analytics product that normalizes ABS challenge events into warehouse tables, reporting views, editorial outputs, and interactive analysis.",
-      problem: "ABS challenge events create analytical signals that are hard to inspect from isolated game events or static box scores.",
-      system: "Next.js and TypeScript application surfaces, PostgreSQL serving data, Python ETL, warehouse-to-serving publishing, SQL-first analytical views, auth, publishing, comments, and release checks.",
-      stack: "Next.js, React, TypeScript, PostgreSQL, Python ETL, Clerk, Vitest, Playwright",
-      links: [
-        { label: "Repo", href: "https://github.com/ColbyRReichenbach/abs-observatory" },
-        { label: "Live", href: "https://abs-observatory.vercel.app" }
-      ]
-    },
-    pulse: {
-      title: "Pulse Tracker",
-      kicker: "/ Multi-Tenant Coaching Platform",
-      image: "/static/images/pulse_preview.png",
-      summary: "A coaching application with authenticated user data, Supabase RLS, rate limiting, request routing, safety checks, telemetry, and tested product behavior.",
-      problem: "Generated coaching features need user context, data isolation, safe request handling, rate limits, and observability to be useful in practice.",
-      system: "Next.js product interface, Supabase authentication and RLS, context routing, Upstash Redis rate limiting, Sentry monitoring, Vercel observability, and tested workout, analytics, profile, settings, onboarding, and admin surfaces.",
-      stack: "Next.js, TypeScript, Supabase, Upstash Redis, Sentry, Vitest, Playwright, Vercel",
-      links: [
-        { label: "Repo", href: "https://github.com/ColbyRReichenbach/workout-web" },
-        { label: "Live", href: "https://pulse-workout.vercel.app/" }
-      ]
-    },
-    opportunity: {
-      title: "Opportunity Radar",
-      kicker: "/ Opportunity Intelligence Workflow",
-      image: null,
-      summary: "A research workflow that turns applications, company visits, and company tech signals into scored opportunity signals, briefs, and recommended next actions.",
-      problem: "A serious search pipeline is fragmented across applications, company research, repeated career-page visits, tech-stack clues, outreach ideas, and follow-up timing.",
-      system: "Research profiles define roles, domains, companies, source types, cadence, and score thresholds. A FastAPI pipeline collects internal sources, dedupes raw items, extracts signals, scores them across fit, company interest, recency, buildability, outreach strength, portfolio relevance, and source confidence, then generates briefs and recommended actions with strict action-state handling.",
-      stack: "Python, FastAPI, SQLAlchemy, Alembic, PostgreSQL, Celery, React, TypeScript, Vite, Playwright",
-      links: []
-    },
-    retention: {
-      title: "Proactive Retention Agent",
-      kicker: "/ Churn Risk Decision Workflow",
-      image: "/static/images/proactive_retention_agent.png",
-      summary: "A retention decision workflow that combines churn risk, complaint context, sentiment signals, and customer value into a ranked analyst queue.",
-      problem: "A churn score alone does not tell a team what to do next; retention workflows need prioritization, business logic, and complaint context.",
-      system: "XGBoost churn model served through FastAPI, Dockerized API layer, complaint theme and sentiment classification, priority logic, and Streamlit dashboard with transparent inspection paths.",
-      stack: "Python, XGBoost, FastAPI, Docker, Streamlit, Pandas, Scikit-learn",
-      links: [{ label: "Repo", href: "https://github.com/ColbyRReichenbach/proactive-retention-agent-build" }]
-    },
-    masters: {
-      title: "Masters Tournament Intelligence",
-      kicker: "/ Interactive Tournament Analytics",
-      image: "/static/images/masters_rewind.jpg",
-      summary: "An interactive sports analytics app for scorecards, player views, leaderboard movement, and round-by-round tournament exploration.",
-      problem: "Tournament coverage often collapses to raw scores and a leaderboard, leaving course context and round movement hard to inspect.",
-      system: "Vite and React application, TypeScript pipeline scripts, generated JSON artifacts, scorecard validation, course-data validation, Recharts visualizations, Tailwind styling, and Vercel deployment configuration.",
-      stack: "Vite, React, TypeScript, Tailwind, Recharts, Node pipeline, Vercel",
-      links: []
-    },
-    draftkings: {
-      title: "DK Sentinel",
-      kicker: "/ Responsible Gaming Case Review",
-      image: "/static/images/draftkings.png",
-      summary: "A responsible-gaming analytics project centered on risk-signal modeling, evidence tracking, case lifecycle management, and analyst review workflow.",
-      problem: "Responsible-gaming analysts need deterministic checks, evidence inspection, case history, and state-specific compliance context.",
-      system: "dbt-style transformation layer, DuckDB and Snowflake-style modeling, FastAPI backend, read-only SQL guardrails, React case queue, analyst notes, assisted review support, and manager-level throughput reporting.",
-      stack: "Python, dbt, DuckDB, FastAPI, React, TypeScript, GitHub Actions, Vercel",
-      links: []
-    }
-  };
-
+  const projects = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
+  const projectMap = new Map(projects.map((project) => [project.id, project]));
   const orb = document.querySelector(".cursor-orb");
   const reveals = document.querySelectorAll(".reveal");
-  const stage = document.getElementById("work-stage");
-  const board = document.getElementById("canvas-board");
-  const viewButtons = document.querySelectorAll("[data-view]");
-  const filterButtons = document.querySelectorAll("[data-filter]");
-  const cards = document.querySelectorAll(".project-card, .home-project-card");
   const modal = document.getElementById("project-modal");
   const modalMedia = document.getElementById("modal-media");
   const modalTitle = document.getElementById("modal-title");
@@ -103,48 +11,114 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalProblem = document.getElementById("modal-problem");
   const modalSystem = document.getElementById("modal-system");
   const modalStack = document.getElementById("modal-stack");
+  const modalEvidence = document.getElementById("modal-evidence");
   const modalLinks = document.getElementById("modal-links");
   let activeFilter = "all";
-  let drag = null;
-  let pan = { x: 0, y: 0 };
+  let activeTrigger = null;
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
-  }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
-  reveals.forEach((element) => revealObserver.observe(element));
+  function createRadarArt(project) {
+    const art = document.createElement("div");
+    art.className = "project-art radar-art";
+    art.setAttribute("aria-hidden", "true");
+
+    const label = document.createElement("span");
+    label.innerHTML = project.title === "AppTrail" ? "App<br>Trail" : project.title.replace(" ", "<br>");
+    art.append(label);
+    return art;
+  }
+
+  function createImage(src, alt) {
+    const image = document.createElement("img");
+    image.src = src;
+    image.alt = alt || "";
+    return image;
+  }
+
+  function createProjectVisual(project, options = {}) {
+    if (!project.image) return createRadarArt(project);
+
+    if (options.flipbook) {
+      const flipbook = document.createElement("span");
+      flipbook.className = "flipbook";
+      flipbook.append(createImage(project.image, project.cardAlt));
+      if (project.homeSecondaryImage) {
+        flipbook.append(createImage(project.homeSecondaryImage, ""));
+      }
+      return flipbook;
+    }
+
+    return createImage(project.image, project.cardAlt);
+  }
+
+  function renderHomeProjects() {
+    const homeProjects = document.querySelector("[data-render-home-projects]");
+    if (!homeProjects) return;
+
+    const positions = ["card-a", "card-b", "card-c", "card-d"];
+    const featured = projects.filter((project) => project.homeFeatured).slice(0, 4);
+    homeProjects.replaceChildren(...featured.map((project, index) => {
+      const button = document.createElement("button");
+      button.className = `home-project-card ${positions[index] || ""}`.trim();
+      button.type = "button";
+      button.dataset.project = project.id;
+      button.append(createProjectVisual(project, { flipbook: true }));
+
+      const title = document.createElement("strong");
+      title.textContent = project.cardTitle || project.title;
+      button.append(title);
+      return button;
+    }));
+  }
+
+  function renderWorkGrid() {
+    const workGrid = document.querySelector("[data-render-work-grid]");
+    if (!workGrid) return;
+
+    workGrid.replaceChildren(...projects.map((project) => {
+      const card = document.createElement("article");
+      card.className = `project-card ${project.cardSize || "size-md"}`;
+      card.dataset.project = project.id;
+      card.dataset.tags = project.tags.join(" ");
+      card.append(createProjectVisual(project));
+
+      const caption = document.createElement("div");
+      caption.className = "project-card-caption";
+
+      const title = document.createElement("span");
+      title.textContent = project.cardTitle || project.title;
+
+      const subtitle = document.createElement("small");
+      subtitle.textContent = project.cardSubtitle || project.subtitle;
+
+      caption.append(title, subtitle);
+
+      const description = document.createElement("p");
+      description.className = "project-card-description";
+      description.textContent = project.cardDescription;
+
+      card.append(caption, description);
+      return card;
+    }));
+  }
+
+  renderHomeProjects();
+  renderWorkGrid();
+
+  const filterButtons = document.querySelectorAll("[data-filter]");
+  const cards = document.querySelectorAll(".project-card, .home-project-card");
+
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
+    reveals.forEach((element) => revealObserver.observe(element));
+  }
 
   window.addEventListener("pointermove", (event) => {
     if (orb) orb.style.transform = `translate(${event.clientX - 160}px, ${event.clientY - 160}px)`;
   });
-
-  document.querySelectorAll("[data-scramble]").forEach((element) => {
-    const original = element.textContent;
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/";
-    element.addEventListener("mouseenter", () => {
-      let tick = 0;
-      const timer = setInterval(() => {
-        element.textContent = original.split("").map((char, index) => {
-          if (char === " " || index < tick) return original[index];
-          return chars[Math.floor(Math.random() * chars.length)];
-        }).join("");
-        tick += 1;
-        if (tick > original.length) clearInterval(timer);
-      }, 28);
-    });
-  });
-
-  function setView(view) {
-    if (!stage) return;
-    stage.classList.toggle("grid-mode", view === "grid");
-    stage.classList.toggle("canvas-mode", view === "canvas");
-    viewButtons.forEach((button) => {
-      const active = button.dataset.view === view;
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", String(active));
-    });
-  }
 
   function setFilter(filter) {
     activeFilter = filter;
@@ -154,86 +128,134 @@ document.addEventListener("DOMContentLoaded", () => {
       button.setAttribute("aria-pressed", String(active));
     });
     cards.forEach((card) => {
-      const tags = card.dataset.tags || "";
+      const tags = (card.dataset.tags || "").split(/\s+/).filter(Boolean);
       card.classList.toggle("filtered-out", filter !== "all" && !tags.includes(filter));
     });
   }
 
-  viewButtons.forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
-  filterButtons.forEach((button) => button.addEventListener("click", () => setFilter(button.dataset.filter)));
+  function clearElement(element) {
+    if (element) element.replaceChildren();
+  }
 
-  if (stage && board) stage.addEventListener("pointerdown", (event) => {
-    if (stage.classList.contains("grid-mode") || event.target.closest(".project-card")) return;
-    drag = { startX: event.clientX, startY: event.clientY, baseX: pan.x, baseY: pan.y };
-    stage.classList.add("dragging");
-    stage.setPointerCapture(event.pointerId);
-  });
-  if (stage && board) stage.addEventListener("pointermove", (event) => {
-    if (!drag) return;
-    pan = { x: drag.baseX + event.clientX - drag.startX, y: drag.baseY + event.clientY - drag.startY };
-    board.style.setProperty("--pan-x", `${pan.x}px`);
-    board.style.setProperty("--pan-y", `${pan.y}px`);
-  });
-  if (stage && board) stage.addEventListener("pointerup", (event) => {
-    if (!drag) return;
-    drag = null;
-    stage.classList.remove("dragging");
-    stage.releasePointerCapture(event.pointerId);
-  });
+  function populateLinks(project) {
+    clearElement(modalLinks);
+    if (!modalLinks) return;
 
-  function openProject(projectId) {
-    const project = projects[projectId];
+    if (project.links.length) {
+      project.links.forEach((link) => {
+        const anchor = document.createElement("a");
+        anchor.href = link.href;
+        anchor.textContent = link.label;
+        if (!link.href.startsWith("/")) {
+          anchor.target = "_blank";
+          anchor.rel = "noopener noreferrer";
+        }
+        modalLinks.append(anchor);
+      });
+      return;
+    }
+
+    const fallback = document.createElement("a");
+    fallback.href = `mailto:colbyrreichenbach@gmail.com?subject=${encodeURIComponent(project.title)}`;
+    fallback.textContent = "Ask about this";
+    modalLinks.append(fallback);
+  }
+
+  function populateEvidence(project) {
+    clearElement(modalEvidence);
+    if (!modalEvidence) return;
+
+    project.evidence.forEach((item) => {
+      const chip = document.createElement("span");
+      chip.textContent = item;
+      modalEvidence.append(chip);
+    });
+  }
+
+  function focusableElements() {
+    if (!modal) return [];
+    return [...modal.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")]
+      .filter((element) => element.offsetParent !== null);
+  }
+
+  function openProject(projectId, trigger) {
+    const project = projectMap.get(projectId);
     if (!project || !modal) return;
     if (!modalKicker || !modalTitle || !modalSummary || !modalProblem || !modalSystem || !modalStack || !modalMedia || !modalLinks) return;
+
+    activeTrigger = trigger || document.activeElement;
     modalKicker.textContent = project.kicker;
     modalTitle.textContent = project.title;
     modalSummary.textContent = project.summary;
     modalProblem.textContent = project.problem;
     modalSystem.textContent = project.system;
     modalStack.textContent = project.stack;
-    modalMedia.innerHTML = project.image
-      ? `<img src="${project.image}" alt="${project.title} preview" />`
-      : `<div class="project-art radar-art"><span>${project.title.replace(" ", "<br>")}</span></div>`;
-    modalLinks.innerHTML = project.links.length
-      ? project.links.map((link) => `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join("")
-      : `<a href="mailto:colbyrreichenbach@gmail.com?subject=${encodeURIComponent(project.title)}">Ask about this</a>`;
+    modalMedia.replaceChildren(createProjectVisual(project));
+    populateEvidence(project);
+    populateLinks(project);
+
     modal.hidden = false;
     document.body.classList.add("modal-open");
-    modal.querySelector(".modal-close").focus();
+    const closeButton = modal.querySelector(".modal-close");
+    if (closeButton) closeButton.focus();
   }
 
   function closeProject() {
+    if (!modal || modal.hidden) return;
     modal.hidden = true;
     document.body.classList.remove("modal-open");
+    if (activeTrigger && typeof activeTrigger.focus === "function") {
+      activeTrigger.focus();
+    }
+    activeTrigger = null;
   }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => setFilter(button.dataset.filter));
+  });
 
   cards.forEach((card) => {
     card.tabIndex = 0;
     card.setAttribute("role", "button");
-    card.setAttribute("aria-label", `Open ${projects[card.dataset.project]?.title || "project"} details`);
+    card.setAttribute("aria-label", `Open ${projectMap.get(card.dataset.project)?.title || "project"} details`);
     card.addEventListener("click", () => {
       if (activeFilter !== "all" && card.classList.contains("filtered-out")) return;
-      openProject(card.dataset.project);
+      openProject(card.dataset.project, card);
     });
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        openProject(card.dataset.project);
+        openProject(card.dataset.project, card);
       }
     });
   });
 
-  document.querySelectorAll("[data-hero-project]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      openProject(button.dataset.heroProject);
+  if (modal) {
+    modal.addEventListener("click", (event) => {
+      if (event.target.matches("[data-close-modal]")) closeProject();
     });
-  });
+  }
 
-  if (modal) modal.addEventListener("click", (event) => {
-    if (event.target.matches("[data-close-modal]")) closeProject();
-  });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modal && !modal.hidden) closeProject();
+    if (!modal || modal.hidden) return;
+
+    if (event.key === "Escape") {
+      closeProject();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+    const focusable = focusableElements();
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 });
