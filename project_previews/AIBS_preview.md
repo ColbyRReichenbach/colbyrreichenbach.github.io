@@ -1,21 +1,22 @@
-# AiBS
+# AiBS / ABS Observatory
 
-### Baseball Analytics Intelligence Platform · Live & Deployed
+### Baseball Analytics & AI Data Product
 
----
+AiBS is a warehouse-backed baseball analytics platform for Automated Ball-Strike challenge analysis, game/team/umpire context, challenge value, leaderboards, reports, editorial/community features, and AI-assisted interpretation.
 
-Most sports products visualize games. This one models the decision layer around challenged ball-strike calls.
+## Problem
 
-**The problem:** MLB’s ABS challenge era created a new analytics surface — challenge timing, overturn patterns, umpire volatility, and game-state consequence — but there are very few products built to structure that information into something analyzable. AiBS turns ABS events into a full analytical system rather than a one-off dashboard.
+ABS challenge events create analytical signals around challenge timing, overturn probability, team and umpire behavior, pitch state, and game consequence. Those signals are hard to inspect from isolated event feeds or static box scores.
 
----
+## System
 
-**What it is:**
+- Python ETL.
+- PostgreSQL schemas and mart views.
+- Next.js/React/TypeScript product surfaces.
+- Polling, backfill, validation, sample data, and warehouse-serving reconciliation scripts.
+- Challenge classification, pitch timelines, modeled overturn probability, daily team/umpire summaries, expectancy baselines, decision value, impact metrics, and editorial summaries.
+- AI-assisted interpretation with bounded tools, policy checks, ownership controls, conversation persistence, sanitized tool results, rate limits, usage/cost logging, safety events, and admin review surfaces.
 
-A full-stack baseball analytics platform built around MLB ABS challenge data, spanning live game pages, team and umpire intelligence, bounded AI-assisted interpretation, and editorial workflows. The product supports both fan and org viewing modes, changing the framing and analytical emphasis without changing the underlying facts.
+## Stack
 
-Under the hood, AiBS uses PostgreSQL as the serving and product database, Python ETL for ingestion and enrichment, and a SQL-first application pattern to power server-rendered analytical views. The product currently includes pregame/live/final game hubs, challenge timelines, strike-zone drilldowns, leaderboard and detail-page analytics, baseball-scoped AI workflows with authenticated bounded tools and telemetry, and editorial/community infrastructure including publishing, comments, moderation, and public profiles. Testing includes Vitest, Playwright, and Python unittest coverage. 
-
----
-
-**Stack:** Next.js 16 · React 19 · TypeScript · PostgreSQL · Python ETL · OpenAI · Clerk · Vitest · Playwright
+Python, PostgreSQL, SQL, Next.js, React, TypeScript, ETL, OpenAI API, Vitest, Playwright.

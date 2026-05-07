@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work | Colby Reichenbach</title>
+  <meta name="description" content="AI, ML, analytics, and data product case studies from Colby Reichenbach: APIs, pipelines, model evidence, LLM workflows, dashboards, and decision systems." />
+  <link rel="canonical" href="https://colbyrreichenbach.github.io/work/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/style.css?v=6.0" />
+</head>
+<body class="work-page">
+  <div class="site-noise" aria-hidden="true"></div>
+  <nav class="top-nav page-nav" aria-label="Primary navigation">
+    <a class="back-link" href="/" aria-label="Back to home">&larr;</a>
+    <a class="brand" href="/"><span class="brand-mark">CR</span><span>Colby</span><span class="brand-path">/ work</span></a>
+    <a class="nav-cta" href="../static/Colby_Reichenbach_Resume.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
+  </nav>
+
+  <main class="work-shell">
+    <header class="page-header">
+      <p class="eyebrow">/ Work</p>
+      <h1>Systems that turn data and AI into decisions.</h1>
+      <p>Each project below is a productized system: APIs, pipelines, models or LLM workflows, analytics layers, and interfaces built around real decision points.</p>
+    </header>
+
+    <div class="filter-rail" aria-label="Project filters">
+      <button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="filter-pill" data-filter="ai" aria-pressed="false">Applied AI</button>
+      <button type="button" class="filter-pill" data-filter="ml" aria-pressed="false">ML / MLOps</button>
+      <button type="button" class="filter-pill" data-filter="data" aria-pressed="false">Data Engineering</button>
+      <button type="button" class="filter-pill" data-filter="analytics" aria-pressed="false">Analytics Engineering</button>
+      <button type="button" class="filter-pill" data-filter="product" aria-pressed="false">Product Systems</button>
+    </div>
+
+    <section class="work-grid" data-render-work-grid aria-label="Project grid"></section>
+  </main>
+
+  <div class="project-modal" id="project-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-summary">
+      <button type="button" class="modal-close" data-close-modal aria-label="Close project detail">Close</button>
+      <div class="modal-media" id="modal-media"></div>
+      <div class="modal-content">
+        <span class="slash-label" id="modal-kicker">/ System</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-summary"></p>
+        <div class="evidence-chips" id="modal-evidence" aria-label="Project evidence"></div>
+        <div class="modal-meta">
+          <div><span>Problem</span><p id="modal-problem"></p></div>
+          <div><span>System</span><p id="modal-system"></p></div>
+          <div><span>Stack</span><p id="modal-stack"></p></div>
+        </div>
+        <div class="modal-links" id="modal-links"></div>
+      </div>
+    </article>
+  </div>
+  <script src="../static/projects.js?v=6.0"></script>
+  <script src="../static/script.js?v=6.0"></script>
+</body>
+</html>

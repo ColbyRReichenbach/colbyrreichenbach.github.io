@@ -1,35 +1,25 @@
 # SPEC-NYC
 
-### Production Automated Valuation Model · NYC Real Estate
+### Real Estate Valuation ML Governance Pipeline
 
----
+SPEC-NYC is a Python/TypeScript valuation-modeling and governance pipeline for NYC residential property data. The project focuses on the evidence needed around a model: ETL, feature engineering, evaluation, explainability, monitoring, retrain policy, and release gates.
 
-Most AVM demos stop at "I got a good R²."
-This one doesn't.
+## Problem
 
-**The problem:** Real estate valuation at scale requires more than a trained 
-model. It requires a system that knows when its predictions are trustworthy,
-when they've drifted, and when to retrain. Built on 1M+ real NYC property 
-transactions, SPEC-NYC is a full production DS workflow, not a notebook.
+Valuation modeling cannot stop at one aggregate metric. Reviewers need to know where performance holds, where it fails, what changed between versions, and what evidence supports retraining or release.
 
----
+## System
 
-**What makes it production-grade:**
+- Source connectors and canonical data contracts.
+- ETL with identity, deduplication, segmentation, temporal history, feature engineering, imputation, and non-leaky proxy feature paths.
+- Time-based train/test split and XGBoost evaluation.
+- SHAP explainability artifacts.
+- Drift and performance monitoring.
+- Retrain-policy outputs.
+- Champion/challenger and release-gate code.
+- Streamlit governance dashboard.
+- Next.js API/demo surfaces with Zod contracts and bounded copilot patterns.
 
-The pipeline runs from raw NYC Open Data ingestion (retries, caching, Pandera 
-data contracts) through XGBoost training with Optuna tuning, SHAP 
-explainability artifacts, and a champion/challenger model arena. Every
-promotion requires passing defined gates with human sign-off and a documented
-rollback path. Segment-level scorecards (PPE10, MdAPE, R²) break performance 
-out by property tier so underperforming slices can't hide behind good 
-aggregates. Drift monitoring and release validation tell the system when to 
-retrain.
+## Stack
 
-Every experiment is hypothesis-driven: tracked with a hypothesis ID, dataset 
-version, feature set version, and pass/fail criteria before a single line of 
-training code runs.
-
----
-
-**Stack:** Python · XGBoost · Optuna · MLflow · SHAP · Pandera · Docker · 
-FastAPI · Streamlit · NYC Open Data
+Python, Pandas, XGBoost, SHAP, Optuna, MLflow-style artifacts, Pandera, Streamlit, Next.js, TypeScript, Zod, PostgreSQL.

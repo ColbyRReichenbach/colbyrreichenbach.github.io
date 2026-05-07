@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPEC-NYC Case Study | Colby Reichenbach</title>
+  <meta name="description" content="SPEC-NYC case study: a real estate valuation ML governance pipeline with ETL, XGBoost, SHAP, monitoring, retrain policy, and release-readiness artifacts." />
+  <link rel="canonical" href="https://colbyrreichenbach.github.io/work/spec-nyc/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../static/style.css?v=6.0" />
+</head>
+<body class="case-page">
+  <div class="site-noise" aria-hidden="true"></div>
+  <nav class="top-nav page-nav" aria-label="Primary navigation">
+    <a class="back-link" href="/work/" aria-label="Back to work">&larr;</a>
+    <a class="brand" href="/"><span class="brand-mark">CR</span><span>Colby</span><span class="brand-path">/ spec-nyc</span></a>
+    <a class="nav-cta" href="../../static/Colby_Reichenbach_Resume.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
+  </nav>
+  <main class="case-shell">
+    <section class="case-hero">
+      <div>
+        <p class="eyebrow">/ Real Estate Valuation ML Governance</p>
+        <h1>SPEC-NYC</h1>
+        <p>A Python/TypeScript valuation-modeling and governance pipeline for NYC residential property data, focused on ETL, model evaluation, explainability, monitoring, retrain policy, and release-readiness artifacts.</p>
+        <div class="case-links">
+          <a href="https://github.com/ColbyRReichenbach/SPEC-NYC" target="_blank" rel="noopener noreferrer">Repo</a>
+          <a href="/work/">All work</a>
+        </div>
+      </div>
+      <div class="case-visual"><img src="../../static/images/spec_valuation.png" alt="SPEC-NYC valuation governance dashboard" /></div>
+    </section>
+    <section class="case-grid">
+      <article class="case-section">
+        <h2>Problem</h2>
+        <p>Valuation modeling cannot stop at a single aggregate metric. Reviewers need segment-level performance, explainability, drift/performance signals, retraining decisions, and release-gate evidence.</p>
+      </article>
+      <article class="case-section">
+        <h2>System</h2>
+        <p>Source connectors, canonicalization, ETL, identity/deduplication, feature engineering, time-based train/test splitting, XGBoost evaluation, SHAP artifacts, drift/performance monitoring, retrain-policy logic, champion/challenger code, Streamlit dashboard, and Next.js API/demo surfaces with Zod contracts.</p>
+      </article>
+      <article class="case-section">
+        <h2>Evidence</h2>
+        <div class="evidence-chips"><span>SHAP</span><span>Drift monitoring</span><span>Retrain policy</span></div>
+      </article>
+      <article class="case-section full">
+        <h2>Stack</h2>
+        <p>Python, Pandas, XGBoost, SHAP, Optuna, MLflow-style artifacts, Pandera, Streamlit, Next.js, TypeScript, Zod, PostgreSQL.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

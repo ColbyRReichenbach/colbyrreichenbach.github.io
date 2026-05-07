@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShelfOps Case Study | Colby Reichenbach</title>
+  <meta name="description" content="ShelfOps case study: a pre-pilot retail replenishment and demand forecasting platform with FastAPI, PostgreSQL, Celery, LightGBM, SHAP, and React dashboards." />
+  <link rel="canonical" href="https://colbyrreichenbach.github.io/work/shelfops/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../static/style.css?v=6.0" />
+</head>
+<body class="case-page">
+  <div class="site-noise" aria-hidden="true"></div>
+  <nav class="top-nav page-nav" aria-label="Primary navigation">
+    <a class="back-link" href="/work/" aria-label="Back to work">&larr;</a>
+    <a class="brand" href="/"><span class="brand-mark">CR</span><span>Colby</span><span class="brand-path">/ shelfops</span></a>
+    <a class="nav-cta" href="../../static/Colby_Reichenbach_Resume.pdf" target="_blank" rel="noopener noreferrer">/ Resume</a>
+  </nav>
+  <main class="case-shell">
+    <section class="case-hero">
+      <div>
+        <p class="eyebrow">/ Retail Replenishment &amp; Demand Forecasting</p>
+        <h1>ShelfOps</h1>
+        <p>A pre-pilot retail inventory decision platform that turns sales, inventory, product, supplier, and integration data into demand forecasts, stockout/overstock risk, replenishment recommendations, and buyer review workflows.</p>
+        <div class="case-links">
+          <a href="https://github.com/ColbyRReichenbach/shelfops" target="_blank" rel="noopener noreferrer">Repo</a>
+          <a href="/work/">All work</a>
+        </div>
+      </div>
+      <div class="case-visual"><img src="../../static/images/shelfops.png" alt="ShelfOps replenishment dashboard" /></div>
+    </section>
+    <section class="case-grid">
+      <article class="case-section">
+        <h2>Problem</h2>
+        <p>Retail replenishment decisions sit across noisy systems: transactions, inventory levels, supplier rules, receiving issues, purchase orders, promotions, and exception events. A useful system has to connect forecasts to reviewable operational decisions.</p>
+      </article>
+      <article class="case-section">
+        <h2>System</h2>
+        <p>Async FastAPI APIs, SQLAlchemy/PostgreSQL tenant context, Redis/Celery workers, integration adapters, demand forecasting artifacts, dataset snapshots, backtests, model registry and promotion gates, simulation endpoints, anomaly workflows, and React/TypeScript decision dashboards.</p>
+      </article>
+      <article class="case-section">
+        <h2>Evidence</h2>
+        <div class="evidence-chips"><span>Forecast evidence</span><span>Replenishment simulation</span><span>Buyer dashboard</span></div>
+      </article>
+      <article class="case-section full">
+        <h2>Stack</h2>
+        <p>Python, FastAPI, SQLAlchemy, PostgreSQL, Redis, Celery, React, TypeScript, LightGBM, SHAP, Pydantic, Docker.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
